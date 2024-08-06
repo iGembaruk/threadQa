@@ -8,7 +8,7 @@ import tests.ui.elements.ElementsMain;
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
 
-public class MainWebSiteTest implements MainMethods {
+public class MainWebSiteTest  {
     SelenideElement header = $x("//a");
 
 
@@ -20,14 +20,8 @@ public class MainWebSiteTest implements MainMethods {
     SelenideElement gamestoreapplicationBtn = $x("//div[@class='card-body']/h5[text()='Game Store Application']");
     SelenideElement threadQaAutorBtn = $x("//a[text()='ThreadQa']");
 
-    @Override
-    public void waitHeaderMainSite() {
-        header.should(Condition.visible);
-
-    }
-
     public ElementsMain enterElementsClick(){
-        waitHeaderMainSite();
+        header.should(Condition.visible);
         elementsBtn.click();
         return Selenide.page(ElementsMain.class);
     }

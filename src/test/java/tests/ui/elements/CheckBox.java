@@ -12,8 +12,6 @@ public class CheckBox {
     SelenideElement allCheckListClose = $x("//button[@aria-label='Collapse all']");
 
     SelenideElement checkBoxHomeAllSelected = $x("//label[@for='tree-node-home']");
-
-
     SelenideElement result = $x("//div[@id='result']");
 
     public CheckBox clickAllCheckListEnter() {
@@ -32,9 +30,5 @@ public class CheckBox {
         return this;
     }
 
-    public CheckBox assertionsResults(){
-
-        return this;
-    }
 
 }

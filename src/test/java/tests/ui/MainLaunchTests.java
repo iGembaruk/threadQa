@@ -2,9 +2,12 @@ package tests.ui;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
@@ -13,8 +16,6 @@ public class MainLaunchTests {
     private String email = "i.gembaruk@mail.ru";
     private String address1 = "ul1 d.13";
     private String address2 = "ul2 d.23";
-
-
 
     @BeforeEach
     public void setUp(){
@@ -46,6 +47,7 @@ public class MainLaunchTests {
 
     @Test
     public void inputElementsTextBoxTest(){
+
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -69,6 +71,15 @@ public class MainLaunchTests {
                 .checkBoxClick()
                 .clickAllCheckListEnter()
                 .clickAllCheckListClose();
+    }
+
+    @Test
+    public void clickElementsCheckBoxManySelenideElementsTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .checkBoxClick();
+               // .clickCheckBox();
     }
 
 
