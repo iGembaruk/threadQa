@@ -45,7 +45,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void inputTextBoxTest(){
+    public void inputElementsTextBoxTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -59,7 +59,16 @@ public class MainLaunchTests {
                 .assert2Email(email)
                 .assert3CurrentAddress(address1)
                 .assert4PermanentAddress(address2);
+    }
 
+    @Test
+    public void clickElementsCheckBoxTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .checkBoxClick()
+                .clickAllCheckListEnter()
+                .clickAllCheckListClose();
     }
 
 

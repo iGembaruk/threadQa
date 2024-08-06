@@ -11,6 +11,9 @@ public class ElementsMain {
     SelenideElement elementsBtn = $x("//div[@class='header-text'][text()='Elements']");
     SelenideElement textBoxBtn = $x("//span[@class='text'][text()='Text Box']");
 
+    SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
+
+
     public ElementsMain dropDownWindows(){
         elementsBtn.click();
         elementsBtn.click();
@@ -20,4 +23,9 @@ public class ElementsMain {
         textBoxBtn.should(Condition.visible).click();
         return page(TextBox.class);
     }
+    public CheckBox checkBoxClick(){
+        checkBox.should(Condition.visible).click();
+        return page(CheckBox.class);
+    }
+
 }
