@@ -6,7 +6,9 @@ import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tests.ui.elements.CheckBox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
@@ -16,6 +18,10 @@ public class MainLaunchTests {
     private String email = "i.gembaruk@mail.ru";
     private String address1 = "ul1 d.13";
     private String address2 = "ul2 d.23";
+    CheckBox checkBox = new CheckBox();
+    List<SelenideElement> elements = new ArrayList<>();
+
+
 
     @BeforeEach
     public void setUp(){
@@ -77,9 +83,14 @@ public class MainLaunchTests {
     public void clickElementsCheckBoxManySelenideElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        List<SelenideElement> checkBoxesToClick = new ArrayList<>();
+        checkBoxesToClick.add(checkBox.checkNotes);
+        checkBoxesToClick.add(checkBox.checkCommands);
         mainWebSiteTest.enterElementsClick()
-                .checkBoxClick();
-               // .clickCheckBox();
+                .checkBoxClick()
+                .clickArrayHome()
+                .clickArrayDesktop()
+                .clicksCheckBoxes(checkBoxesToClick);
     }
 
 
