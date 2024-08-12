@@ -95,6 +95,35 @@ public class MainLaunchTests {
                 .clicksCheckBoxes(checkBoxesToClick)
                 .assertsCheckBox(checkBoxesToClick);
     }
+    @Test
+    public void radioBtnYesClick(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .radioButtonClick()
+                .radioButtonYesClick()
+                .assertionsYouHAveSelected("Yes");// TODO, вероятно нужно извлекать элемент .text
+    }
+
+    @Test
+    public void radioBtnImpressiveClick(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .radioButtonClick()
+                .radioButtonImpressiveClick()
+                .assertionsYouHAveSelected("Impressive");// TODO, вероятно нужно извлекать элемент .text
+    }
+    @Test
+    public void radioBtnDisablesNo(){//TODO, пункт 4 моего файла
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .radioButtonClick()
+                .radioButtonNoHover()
+                .assertionsDisabled();
+    }
+
 
 
 }

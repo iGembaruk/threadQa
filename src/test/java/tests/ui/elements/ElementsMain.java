@@ -13,6 +13,8 @@ public class ElementsMain {
 
     SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
 
+    SelenideElement radioButtonBtn = $x("//span[@class='text'][text()='Radio Button']");
+
 
     public ElementsMain dropDownWindows(){
         elementsBtn.click();
@@ -26,6 +28,11 @@ public class ElementsMain {
     public CheckBox checkBoxClick(){
         checkBox.should(Condition.visible).click();
         return page(CheckBox.class);
+    }
+
+    public RadioButton radioButtonClick(){
+       radioButtonBtn.should(Condition.visible).click();
+       return page(RadioButton.class);
     }
 
 }
