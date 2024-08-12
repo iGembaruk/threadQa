@@ -76,10 +76,12 @@ public class MainLaunchTests {
         mainWebSiteTest.enterElementsClick()
                 .checkBoxClick()
                 .clickAllCheckListEnter()
-                .clickAllCheckListClose();
+                .assertionsCount6Elements()
+                .clickAllCheckListClose()
+                .assertionsCount0Elements();
     }
 
-    @Test
+    @Test//TODO работает без проверки .assertsCheckBox(checkBoxesToClick)
     public void clickElementsCheckBoxManySelenideElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -90,7 +92,8 @@ public class MainLaunchTests {
                 .checkBoxClick()
                 .clickArrayHome()
                 .clickArrayDesktop()
-                .clicksCheckBoxes(checkBoxesToClick);
+                .clicksCheckBoxes(checkBoxesToClick)
+                .assertsCheckBox(checkBoxesToClick);
     }
 
 
