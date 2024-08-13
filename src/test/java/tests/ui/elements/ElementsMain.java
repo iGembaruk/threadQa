@@ -16,6 +16,10 @@ public class ElementsMain {
     SelenideElement radioButtonBtn = $x("//span[@class='text'][text()='Radio Button']");
     SelenideElement webTablesBtn = $x("//span[@class='text'][text()='Web Tables']");
 
+    SelenideElement buttonBtn = $x("//span[@class='text'][text()='Buttons']");
+
+    SelenideElement linksBtn = $x("//span[@class='text'][text()='Links']");
+
 
     public ElementsMain dropDownWindows(){
         elementsBtn.click();
@@ -39,6 +43,16 @@ public class ElementsMain {
     public WebTables webTables(){
         webTablesBtn.should(Condition.visible).click();
         return page(WebTables.class);
+    }
+
+    public Buttons buttonsClick(){
+        buttonBtn.should(Condition.visible).click();
+        return page(Buttons.class);
+    }
+
+    public Links linksClick(){
+        linksBtn.should(Condition.visible).click();
+        return page(Links.class);
     }
 
 }

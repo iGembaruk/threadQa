@@ -161,6 +161,43 @@ public class MainLaunchTests {
                 .assertionStringIsSearch(email)
                 .assertionIntegerIsSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
                 .assertionIntegerIsSearch(salary);
-
     }
+    @Test
+    public void buttonsDoubleClick(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .buttonsClick()
+                .doubleClickMeMethods()
+                .assertClick("double");// TODO Как то извлечь одно слово?
+    }
+
+    @Test
+    public void buttonsRightClick(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .buttonsClick()
+                .rightClickMeBMethods()
+                .assertClick("right");
+    }
+    @Test
+    public void buttonsClickMe(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .buttonsClick()
+                .clickMeMethods()
+                .assertClick("dynamic");
+    }
+    @Test
+    public void linksNewWindows(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .linksClick()
+                .enterNewWindows()
+                .assertionsCountWindows2();
+    }
+
 }
