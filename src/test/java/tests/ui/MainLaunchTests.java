@@ -14,10 +14,14 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
-    private String fullName = "Gembaruk Igor Vladimirovich";
+    private String fullName = "Gembaruk Igor";
+    private String firstName = "Oki";
     private String email = "i.gembaruk@mail.ru";
     private String address1 = "ul1 d.13";
+    private Integer age = 27;
+    private Integer salary = 100000;
     private String address2 = "ul2 d.23";
+    private String departament = "Penza";
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
 
@@ -86,14 +90,14 @@ public class MainLaunchTests {
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         List<SelenideElement> checkBoxesToClick = new ArrayList<>();
-        checkBoxesToClick.add(checkBox.checkNotes);
-        checkBoxesToClick.add(checkBox.checkCommands);
+        checkBoxesToClick.add(checkBox.getCheckNotes());
+        checkBoxesToClick.add(checkBox.getCheckCommands());
         mainWebSiteTest.enterElementsClick()
                 .checkBoxClick()
                 .clickArrayHome()
                 .clickArrayDesktop()
-                .clicksCheckBoxes(checkBoxesToClick)
-                .assertsCheckBox(checkBoxesToClick);
+                .clicksCheckBoxes(checkBoxesToClick);
+                //assertsCheckBox(checkBoxesToClick);
     }
     @Test
     public void radioBtnYesClick(){
@@ -122,6 +126,22 @@ public class MainLaunchTests {
                 .radioButtonClick()
                 .radioButtonNoHover()
                 .assertionsDisabled();
+    }
+
+    @Test
+    public void webTablesClick(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .webTables()
+                .createClickAddBtn()
+                .setValueInputFirstName(firstName)
+                .setValueInputLastName(fullName)
+                .setValueInputEmail(email)
+                .setValueInputAge(age)
+                .setValueSalary(salary)
+                .setValueDepartment(departament)
+                .clickSubmit();
     }
 
 

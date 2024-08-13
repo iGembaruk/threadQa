@@ -14,6 +14,7 @@ public class ElementsMain {
     SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
 
     SelenideElement radioButtonBtn = $x("//span[@class='text'][text()='Radio Button']");
+    SelenideElement webTablesBtn = $x("//span[@class='text'][text()='Web Tables']");
 
 
     public ElementsMain dropDownWindows(){
@@ -33,6 +34,11 @@ public class ElementsMain {
     public RadioButton radioButtonClick(){
        radioButtonBtn.should(Condition.visible).click();
        return page(RadioButton.class);
+    }
+
+    public WebTables webTables(){
+        webTablesBtn.should(Condition.visible).click();
+        return page(WebTables.class);
     }
 
 }

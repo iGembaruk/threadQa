@@ -22,9 +22,22 @@ public class CheckBox {
     SelenideElement arrayHomeBtn = $x("//li[@class='rct-node rct-node-parent rct-node-collapsed']/span/button[@aria-label='Toggle']");
 
     SelenideElement arrayDesktopBtn = $x("//li[contains(@class, 'collapsed')][1]//button");
-    public SelenideElement checkNotes = $x("//label[@for='tree-node-notes']//span[@class='rct-checkbox']");
-    public SelenideElement checkCommands = $x("//label[@for='tree-node-commands']//span[@class='rct-checkbox']");
-    public ElementsCollection collectionsElementsIsCheckBox = $$x("//span[@class='text-success']");
+    //вот эти три
+    SelenideElement checkNotes = $x("//label[@for='tree-node-notes']//span[@class='rct-checkbox']");
+    SelenideElement checkCommands = $x("//label[@for='tree-node-commands']//span[@class='rct-checkbox']");
+    ElementsCollection collectionsElementsIsCheckBox = $$x("//span[@class='text-success']");
+
+    public SelenideElement getCheckNotes() {
+        return checkNotes;
+    }
+
+    public SelenideElement getCheckCommands() {
+        return checkCommands;
+    }
+
+    public ElementsCollection getCollectionsElementsIsCheckBox() {
+        return collectionsElementsIsCheckBox;
+    }
 
     SelenideElement arrayDocumentsBtn = $x("");
     SelenideElement arrayDownloadsBtn = $x("");
