@@ -22,6 +22,8 @@ public class MainLaunchTests {
     private Integer salary = 100000;
     private String address2 = "ul2 d.23";
     private String departament = "Penza";
+    private int indexCollectionRowsDefault = 1;
+    private int intIndex20Rows = 2;
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
 
@@ -129,6 +131,15 @@ public class MainLaunchTests {
     }
 
     @Test
+    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindows() {
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .webTables()
+                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
+    }
+
+    @Test
     public void webTablesClick(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -141,9 +152,15 @@ public class MainLaunchTests {
                 .setValueInputAge(age)
                 .setValueSalary(salary)
                 .setValueDepartment(departament)
-                .clickSubmit();
+                .clickSubmit()
+                .inputSearch(email)
+                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
+                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
+                .assertionStringIsSearch(firstName)
+                .assertionStringIsSearch(fullName)
+                .assertionStringIsSearch(email)
+                .assertionIntegerIsSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
+                .assertionIntegerIsSearch(salary);
+
     }
-
-
-
 }
