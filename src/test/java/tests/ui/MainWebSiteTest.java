@@ -11,7 +11,6 @@ import static com.codeborne.selenide.Selenide.page;
 public class MainWebSiteTest  {
     SelenideElement header = $x("//a");
 
-
     SelenideElement elementsBtn = $x("//div[@class='card-body']/h5[text()='Elements']");
     SelenideElement formsBtn = $x("//div[@class='card-body']/h5[text()='Forms']");
     SelenideElement alertsFrameWindowsBtn = $x("//div[@class='card-body']/h5[text()='Alerts, Frame & Windows']");

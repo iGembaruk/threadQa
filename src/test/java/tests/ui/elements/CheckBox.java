@@ -18,7 +18,6 @@ public class CheckBox {
     SelenideElement allCheckListClose = $x("//button[@aria-label='Collapse all']");
     ElementsCollection allListClassElements = $$x("//li[@class='rct-node rct-node-parent rct-node-expanded']");
 
-
     SelenideElement arrayHomeBtn = $x("//li[@class='rct-node rct-node-parent rct-node-collapsed']/span/button[@aria-label='Toggle']");
 
     SelenideElement arrayDesktopBtn = $x("//li[contains(@class, 'collapsed')][1]//button");
@@ -72,11 +71,6 @@ public class CheckBox {
         arrayDesktopBtn.should(Condition.visible).click();
         return this;
     }
-
-//    public CheckBox clickCheckNotes(){
-//        checkNotes.should(Condition.visible).click();
-//        return this;
-//    }
 
     public CheckBox clicksCheckBoxes(List<SelenideElement> elements){
         elements.forEach(x->x.should(Condition.visible).click());

@@ -58,6 +58,4 @@ public class TextBox {
         assertPermanentAddress.should(Condition.visible).should(Condition.partialText(str));
         return this;
     }
-
-
 }

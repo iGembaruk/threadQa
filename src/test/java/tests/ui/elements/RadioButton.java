@@ -34,7 +34,5 @@ public class RadioButton {
         notClickNo.should(Condition.disabled);
         return this;
     }
-
-
 }
 

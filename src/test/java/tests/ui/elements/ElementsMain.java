@@ -20,7 +20,6 @@ public class ElementsMain {
 
     SelenideElement linksBtn = $x("//span[@class='text'][text()='Links']");
 
-
     public ElementsMain dropDownWindows(){
         elementsBtn.click();
         elementsBtn.click();
@@ -54,5 +53,4 @@ public class ElementsMain {
         linksBtn.should(Condition.visible).click();
         return page(Links.class);
     }
-
 }

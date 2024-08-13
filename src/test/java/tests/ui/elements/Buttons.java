@@ -10,7 +10,6 @@ public class Buttons {
     SelenideElement rightClickMeBtn = $x("//button[@id='rightClickBtn']");
     SelenideElement clickMeBtn = $x("//button[text()='Click Me']");
     SelenideElement assertElement = $x("//p");
-   // SelenideElement assertElement = $x("//p[@id='doubleClickMessage']");
 
     public Buttons doubleClickMeMethods(){
         doubleClickMeBtn.should(Condition.visible).doubleClick();
