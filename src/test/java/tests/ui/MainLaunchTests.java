@@ -7,6 +7,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import tests.ui.elements.CheckBox;
+import tests.ui.elements.Links;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +28,6 @@ public class MainLaunchTests {
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
 
-
-
     @BeforeEach
     public void setUp(){
         Configuration.baseUrl = "http://85.192.34.140:8081";
@@ -45,7 +44,8 @@ public class MainLaunchTests {
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
-                .dropDownWindows();
+                .dropDownWindows()
+                .assertionsNovisibleElementsList();
     }
 
     @Test
@@ -101,6 +101,7 @@ public class MainLaunchTests {
                 .clicksCheckBoxes(checkBoxesToClick);
                 //assertsCheckBox(checkBoxesToClick);
     }
+
     @Test
     public void radioBtnYesClick(){
         Selenide.open("/");
@@ -120,6 +121,7 @@ public class MainLaunchTests {
                 .radioButtonImpressiveClick()
                 .assertionsYouHAveSelected("Impressive");// TODO, вероятно нужно извлекать элемент .text
     }
+
     @Test
     public void radioBtnDisablesNo(){//TODO, пункт 4 моего файла
         Selenide.open("/");
@@ -162,6 +164,7 @@ public class MainLaunchTests {
                 .assertionIntegerIsSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
                 .assertionIntegerIsSearch(salary);
     }
+
     @Test
     public void buttonsDoubleClick(){
         Selenide.open("/");
@@ -181,6 +184,7 @@ public class MainLaunchTests {
                 .rightClickMeBMethods()
                 .assertClick("right");
     }
+
     @Test
     public void buttonsClickMe(){
         Selenide.open("/");
@@ -190,6 +194,7 @@ public class MainLaunchTests {
                 .clickMeMethods()
                 .assertClick("dynamic");
     }
+
     @Test
     public void linksNewWindows(){
         Selenide.open("/");
@@ -197,7 +202,27 @@ public class MainLaunchTests {
         mainWebSiteTest.enterElementsClick()
                 .linksClick()
                 .enterNewWindows()
-                .assertionsCountWindows2();
+                .assertionsCountWindows2(Links.class);
+    }
+
+    @Test
+    public void linksSwitchWindows(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .linksClick()
+                .enterNewWindows()
+                .switchTwoWindows();
+        Links links = new Links();
+        links.assertionsCountWindows2(Links.class);
+    }
+
+    @Test
+    public void downloadFile(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .uploadAndDownloadClick();
     }
 
 }
