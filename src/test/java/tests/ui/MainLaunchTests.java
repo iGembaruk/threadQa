@@ -4,8 +4,10 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tests.ui.elements.BrokenLinksImages;
 import tests.ui.elements.CheckBox;
 import tests.ui.elements.Links;
 
@@ -40,7 +42,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void dropDownWindowsElementsClick(){
+    public void dropDownWindowsElementsClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -103,7 +105,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void radioBtnYesClick(){
+    public void radioBtnYesClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -113,7 +115,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void radioBtnImpressiveClick(){
+    public void radioBtnImpressiveClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -123,7 +125,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void radioBtnDisablesNo(){//TODO, пункт 4 моего файла
+    public void radioBtnDisablesNoTest(){//TODO, пункт 4 моего файла
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -133,7 +135,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindows() {
+    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -142,7 +144,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void webTablesClick(){
+    public void webTablesClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -166,7 +168,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void buttonsDoubleClick(){
+    public void buttonsDoubleClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -176,7 +178,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void buttonsRightClick(){
+    public void buttonsRightClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -186,7 +188,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void buttonsClickMe(){
+    public void buttonsClickMeTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -196,7 +198,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void linksNewWindows(){
+    public void linksNewWindowsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -206,7 +208,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void linksSwitchWindows(){
+    public void linksSwitchWindowsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -218,11 +220,64 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void downloadFile(){
+    public void brokenLinksImagesValidLinkEnterTest(){
+        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
-                .uploadAndDownloadClick();
+                .brokenLinksImagesClick()
+                .validLinkEnter(brokenLinksImages.getValidlinkBtn())
+                .assertionsNewLink()
+                .assertionsNewLinkH1Google()
+                .assertionUrl("https://www.google.com");
+    }
+
+    @Test
+    public void brokenLinksImagesInvalidLinkEnterTest(){
+        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .brokenLinksImagesClick()
+                .validLinkEnter(brokenLinksImages.getInvalidLink())
+                .assertionsNewLink();
+        // TODO здесь проверку чрз rest-assure лучше сделать на статус код 500?
+    }
+
+    @Test
+    public void downloadFileTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .uploadAndDownloadClick()
+                .downloadFile();
+    }
+
+    @Test
+    public void uploadFileTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .uploadAndDownloadClick()
+                .uploadFile();
+    }
+
+    @Test
+    public void dynamicPropertiesTestNotEnabledElementsTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .dynamicPropertiesClick()
+                .elementsNoEnabled4seconds();
+    }
+
+    @Test
+    public void dynamicPropertiesTestEnabledElementsTest(){
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterElementsClick()
+                .dynamicPropertiesClick()
+                .elementsEnabled5seconds();
     }
 
 }

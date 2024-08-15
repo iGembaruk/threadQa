@@ -25,9 +25,11 @@ public class ElementsMain {
 
     SelenideElement linksBtn = $x("//span[@class='text'][text()='Links']");
 
-
+    SelenideElement brokenLinksImagesBtn = $x("//span[@class='text'][text()='Broken Links - Images']");
 
     SelenideElement uploadAndDownloadBtn = $x("//span[text()='Upload and Download']");
+
+    SelenideElement dynamicPropertiesBtn = $x("//span[@class='text'][text()='Dynamic Properties']");
 
 
     public ElementsMain dropDownWindows(){
@@ -69,8 +71,19 @@ public class ElementsMain {
         return page(Links.class);
     }
 
+    public BrokenLinksImages brokenLinksImagesClick(){
+        brokenLinksImagesBtn.should(visible).click();
+        return page(BrokenLinksImages.class);
+    }
+
     public UploadAndDownload uploadAndDownloadClick(){
         uploadAndDownloadBtn.should(visible).click();
         return page(UploadAndDownload.class);
     }
+
+    public DynamicProperties dynamicPropertiesClick(){
+        dynamicPropertiesBtn.should(visible).click();
+        return page(DynamicProperties.class);
+    }
+
 }
