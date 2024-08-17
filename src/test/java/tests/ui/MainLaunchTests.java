@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import tests.ui.elements.BrokenLinksImages;
 import tests.ui.elements.CheckBox;
 import tests.ui.elements.Links;
+import tests.ui.forms.PracticeForm;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,13 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class MainLaunchTests {
     private String fullName = "Gembaruk Igor";
     private String firstName = "Oki";
+    private String lastName = "blabla";
     private String email = "i.gembaruk@mail.ru";
     private String address1 = "ul1 d.13";
     private Integer age = 27;
     private Integer salary = 100000;
+    private String numbersMobile = "9656363968";
+    private String strDate = "01 Aug 2025";
     private String address2 = "ul2 d.23";
     private String departament = "Penza";
     private int indexCollectionRowsDefault = 1;
@@ -278,6 +282,22 @@ public class MainLaunchTests {
         mainWebSiteTest.enterElementsClick()
                 .dynamicPropertiesClick()
                 .elementsEnabled5seconds();
+    }
+
+    @Test
+    public void practiceFormClikTest(){
+        PracticeForm practiceForm = new PracticeForm();
+        Selenide.open("/");
+        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+        mainWebSiteTest.enterPracticeFormClick()
+                .practiceFormBtnEnterClick()
+                .inputFirstName(firstName)
+                .inputLastName(lastName)
+                .inputEmail(email)
+                .clickRadioBtnBranch(practiceForm.getOtherRadioBtn())
+                .inputMobileNumber(numbersMobile)
+                .inputDateClick(strDate);
+
     }
 
 }

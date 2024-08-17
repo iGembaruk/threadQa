@@ -4,6 +4,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import tests.ui.elements.ElementsMain;
+import tests.ui.forms.PracticeForm;
 
 import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.page;
@@ -25,6 +26,8 @@ public class MainWebSiteTest  {
         return Selenide.page(ElementsMain.class);
     }
 
-
-
+    public PracticeForm enterPracticeFormClick(){
+        formsBtn.should(Condition.visible).click();
+        return Selenide.page(PracticeForm.class);
+    }
 }
