@@ -1,5 +1,7 @@
 plugins {
     id 'java'
+    id "io.qameta.allure" version "2.12.0"
+
 }
 
 group = 'org.example'
@@ -19,9 +21,24 @@ dependencies {
     testImplementation 'com.codeborne:selenide:7.3.3'
 }
 
-test {
+test { //это задача test по умолчанию чрз idea в run
     useJUnitPlatform()
     testLogging {
         events "passed", "skipped", "failed"
+    }
+}
+
+tasks.register("myTags", Test.class){
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+    String fullTags = System.getProperty("customTags")
+    if(fullTags != null){
+        String[] tags = fullTags.split(",")
+        useJUnitPlatform {
+            for (String tag : tags) {
+                includeTags.add(tag)
+            }
+        }
     }
 }

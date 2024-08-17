@@ -3,10 +3,7 @@ package tests.ui;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import tests.ui.elements.BrokenLinksImages;
 import tests.ui.elements.CheckBox;
 import tests.ui.elements.Links;
@@ -16,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
-
 public class MainLaunchTests {
     private String fullName = "Gembaruk Igor";
     private String firstName = "Oki";
@@ -46,6 +42,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("DROPDOWN")
     public void dropDownWindowsElementsClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -55,6 +52,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void clickElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -64,8 +62,8 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void inputElementsTextBoxTest(){
-
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
@@ -82,18 +80,20 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void clickElementsCheckBoxTest(){
+    @Tag("ELEMENTS")
+    public void clickElementsCheckBoxTest(){//TODO пункт1
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
         mainWebSiteTest.enterElementsClick()
                 .checkBoxClick()
                 .clickAllCheckListEnter()
                 .assertionsCount6Elements()
-                .clickAllCheckListClose()
+                .clickAllCheckListClose()//TODO пункт 2
                 .assertionsCount0Elements();
     }
 
-    @Test//TODO работает без проверки .assertsCheckBox(checkBoxesToClick)
+    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
+    @Tag("ELEMENTS")
     public void clickElementsCheckBoxManySelenideElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -109,6 +109,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void radioBtnYesClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -119,6 +120,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void radioBtnImpressiveClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -129,6 +131,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void radioBtnDisablesNoTest(){//TODO, пункт 4 моего файла
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -139,6 +142,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -148,6 +152,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void webTablesClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -172,6 +177,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void buttonsDoubleClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -182,6 +188,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void buttonsRightClickTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -192,6 +199,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void buttonsClickMeTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -202,6 +210,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void linksNewWindowsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -212,6 +221,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void linksSwitchWindowsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -224,6 +234,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void brokenLinksImagesValidLinkEnterTest(){
         BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
         Selenide.open("/");
@@ -237,6 +248,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void brokenLinksImagesInvalidLinkEnterTest(){
         BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
         Selenide.open("/");
@@ -249,6 +261,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void downloadFileTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -258,6 +271,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void uploadFileTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -267,6 +281,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void dynamicPropertiesTestNotEnabledElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
@@ -276,6 +291,7 @@ public class MainLaunchTests {
     }
 
     @Test
+    @Tag("ELEMENTS")
     public void dynamicPropertiesTestEnabledElementsTest(){
         Selenide.open("/");
         MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
