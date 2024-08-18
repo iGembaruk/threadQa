@@ -3,6 +3,7 @@ package tests.ui;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import tests.ui.alertsframewindows.AlertsFrameWindows;
 import tests.ui.elements.ElementsMain;
 import tests.ui.forms.PracticeForm;
 
@@ -30,4 +31,10 @@ public class MainWebSiteTest  {
         formsBtn.should(Condition.visible).click();
         return Selenide.page(PracticeForm.class);
     }
+
+    public AlertsFrameWindows enterListAlertsFrameWindows(){
+        alertsFrameWindowsBtn.should(Condition.visible).click();
+        return Selenide.page(AlertsFrameWindows.class);
+    }
+
 }
