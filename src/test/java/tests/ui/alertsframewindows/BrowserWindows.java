@@ -4,7 +4,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.Assertions;
-import tests.ui.MainWebSiteTest;
 
 import java.util.Iterator;
 import java.util.Set;

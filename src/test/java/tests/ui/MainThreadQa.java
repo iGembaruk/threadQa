@@ -1,17 +1,15 @@
 package tests.ui;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
-import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.*;
 import tests.ui.alertsframewindows.AlertsFrameWindows;
 import tests.ui.elements.ElementsMain;
 import tests.ui.forms.PracticeForm;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 
-public class MainWebSiteTest  {
+public class MainThreadQa {
     SelenideElement header = $x("//a");
+    ElementsCollection list6BtnMainElements = $$x("//div[@class='card mt-4 top-card']");
 
     SelenideElement elementsBtn = $x("//div[@class='card-body']/h5[text()='Elements']");
     SelenideElement formsBtn = $x("//div[@class='card-body']/h5[text()='Forms']");
@@ -21,8 +19,16 @@ public class MainWebSiteTest  {
     SelenideElement gamestoreapplicationBtn = $x("//div[@class='card-body']/h5[text()='Game Store Application']");
     SelenideElement threadQaAutorBtn = $x("//a[text()='ThreadQa']");
 
-    public ElementsMain enterElementsClick(){
+    public MainThreadQa assertHeaderVisible(){
         header.should(Condition.visible);
+        return this;
+    }
+    public MainThreadQa assertCountBtnsMainPage(int countBtn){
+        list6BtnMainElements.should(CollectionCondition.size(countBtn));
+        return this;
+    }
+
+    public ElementsMain enterElementsClick(){
         elementsBtn.click();
         return Selenide.page(ElementsMain.class);
     }

@@ -13,7 +13,9 @@ import static java.util.function.Predicate.not;
 
 public class ElementsMain {
     SelenideElement elementsBtn = $x("//div[@class='header-text'][text()='Elements']");
-    ElementsCollection listDropDownUl = $$x("//ul[@class='menu-list']");
+    ElementsCollection listIs9elementsIsList = $$x("//div[@class='element-list collapse show']/ul/li");
+
+//    ElementsCollection listDropDownUl = $$x("//ul[@class='menu-list']");
     SelenideElement textBoxBtn = $x("//span[@class='text'][text()='Text Box']");
 
     SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
@@ -32,15 +34,19 @@ public class ElementsMain {
     SelenideElement dynamicPropertiesBtn = $x("//span[@class='text'][text()='Dynamic Properties']");
 
 
-    public ElementsMain dropDownWindows(){
-        elementsBtn.click();
+    public ElementsMain oneClickElements(){
         elementsBtn.click();
         return this;
     }
 
-    public void assertionsNovisibleElementsList(){
-        listDropDownUl.get(1).should(Condition.hidden);
+    public ElementsMain assertCountsElementsDropDown(int countElements){
+        listIs9elementsIsList.should(CollectionCondition.size(countElements));
+        return this;
     }
+
+//    public void assertionsNovisibleElementsList(){
+//        listDropDownUl.get(1).should(Condition.hidden);
+//    }
 
     public TextBox textBoxClick(){
         textBoxBtn.should(visible).click();

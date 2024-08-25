@@ -1,21 +1,14 @@
 package tests.ui;
 
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.ex.FileNotDownloadedError;
 import org.junit.jupiter.api.*;
-import tests.ui.elements.BrokenLinksImages;
 import tests.ui.elements.CheckBox;
-import tests.ui.elements.Links;
-import tests.ui.forms.PracticeForm;
 
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
@@ -34,10 +27,10 @@ public class MainLaunchTests {
     private int intIndex20Rows = 2;
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
-    private MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+    private MainThreadQa mainThreadQa = new MainThreadQa();
 
     @BeforeEach
-    public void openPage(){
+    public void openPage() {
         Selenide.open("/");
     }
 
@@ -54,322 +47,331 @@ public class MainLaunchTests {
     }
 
     @Test
+    public void enterMainPageThreadQATest(){
+        int countBtn = 6;
+        mainThreadQa.assertHeaderVisible()
+                .assertCountBtnsMainPage(countBtn);
+    }
+
+    @Test
     @Tag("DROPDOWN")
-    public void dropDownWindowsElementsClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .dropDownWindows()
-                .assertionsNovisibleElementsList();
+    public void dropDownElementsClickTest() {
+        int countBeforeClickElements = 9;
+        int countAfterClickElements = 0;
+        mainThreadQa.enterElementsClick()
+                .assertCountsElementsDropDown(countBeforeClickElements)
+                .oneClickElements()
+                .assertCountsElementsDropDown(countAfterClickElements);
     }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void clickElementsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .dropDownWindows()
-                .textBoxClick();
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void inputElementsTextBoxTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .textBoxClick()
-                .inputFullNameEnter(fullName)
-                .inputEmailEnter(email)
-                .inputCurrentAddressEnter(address1)
-                .inputPermanentAddressEnter(address2)
-                .clickSubmitBtn()
-                .assert1FullName(fullName)
-                .assert2Email(email)
-                .assert3CurrentAddress(address1)
-                .assert4PermanentAddress(address2);
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void clickElementsCheckBoxTest() {//TODO пункт1
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .checkBoxClick()
-                .clickAllCheckListEnter()
-                .assertionsCount6Elements()
-                .clickAllCheckListClose()//TODO пункт 2
-                .assertionsCount0Elements();
-    }
-
-    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
-    @Tag("ELEMENTS")
-    public void clickElementsCheckBoxManySelenideElementsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        List<SelenideElement> checkBoxesToClick = new ArrayList<>();
-        checkBoxesToClick.add(checkBox.getCheckNotes());
-        checkBoxesToClick.add(checkBox.getCheckCommands());
-        mainWebSiteTest.enterElementsClick()
-                .checkBoxClick()
-                .clickArrayHome()
-                .clickArrayDesktop()
-                .clicksCheckBoxes(checkBoxesToClick);
-        //assertsCheckBox(checkBoxesToClick);
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void radioBtnYesClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .radioButtonClick()
-                .radioButtonYesClick()
-                .assertionsYouHAveSelected("Yes");// TODO, вероятно нужно извлекать элемент .text
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void radioBtnImpressiveClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .radioButtonClick()
-                .radioButtonImpressiveClick()
-                .assertionsYouHAveSelected("Impressive");// TODO, вероятно нужно извлекать элемент .text
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void radioBtnDisablesNoTest() {//TODO, пункт 4 моего файла
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .radioButtonClick()
-                .radioButtonNoHover()
-                .assertionsDisabled();
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .webTables()
-                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
-    }
+}
 
 //    @Test
 //    @Tag("ELEMENTS")
-//    public void webTablesClickTest() {
+//    public void clickElementsTest() {
 //        Selenide.open("/");
-//        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-//        mainWebSiteTest.enterElementsClick()
-//                .webTables()
-//                .createClickAddBtn()
-//                .setValueInputFirstName(firstName)
-//                .setValueInputLastName(fullName)
-//                .setValueInputEmail(email)
-//                .setValueInputAge(age)
-//                .setValueSalary(salary)
-//                .setValueDepartment(departament)
-//                .clickSubmit()
-//                .inputSearch(email)
-//                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
-//                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
-//                .assertionInSearch(firstName)
-//                .assertionInSearch(fullName)
-//                .assertionInSearch(email)
-//                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
-//                .assertionInSearch(salary);
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .dropDownWindows()
+//                .textBoxClick();
 //    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void buttonsDoubleClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .buttonsClick()
-                .doubleClickMeMethods()
-                .assertClick("double");// TODO Как то извлечь одно слово?
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void buttonsRightClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .buttonsClick()
-                .rightClickMeBMethods()
-                .assertClick("right");
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void buttonsClickMeTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .buttonsClick()
-                .clickMeMethods()
-                .assertClick("dynamic");
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void linksNewWindowsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .linksClick()
-                .enterNewWindows()
-                .assertionsCountWindows2(Links.class);
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void linksSwitchWindowsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .linksClick()
-                .enterNewWindows()
-                .switchTwoWindows();
-        Links links = new Links();
-        links.assertionsCountWindows2(Links.class);
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void brokenLinksImagesValidLinkEnterTest() {
-        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .brokenLinksImagesClick()
-                .validLinkEnter(brokenLinksImages.getValidlinkBtn())
-                .assertionsNewLink()
-                .assertionsNewLinkH1Google()
-                .assertionUrl("https://www.google.com");
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void brokenLinksImagesInvalidLinkEnterTest() {
-        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .brokenLinksImagesClick()
-                .validLinkEnter(brokenLinksImages.getInvalidLink())
-                .assertionsNewLink();
-        // TODO здесь проверку чрз rest-assure лучше сделать на статус код 500?
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void downloadFileTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .uploadAndDownloadClick()
-                .downloadFile();
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void uploadFileTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .uploadAndDownloadClick()
-                .uploadFile();
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void dynamicPropertiesTestNotEnabledElementsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .dynamicPropertiesClick()
-                .elementsNoEnabled4seconds();
-    }
-
-    @Test
-    @Tag("ELEMENTS")
-    public void dynamicPropertiesTestEnabledElementsTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .dynamicPropertiesClick()
-                .elementsEnabled5seconds();
-    }
-
-    @Test
-    public void practiceFormClikTest() {
-        PracticeForm practiceForm = new PracticeForm();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterPracticeFormClick()
-                .practiceFormBtnEnterClick()
-                .inputFirstName(firstName)
-                .inputLastName(lastName)
-                .inputEmail(email)
-                .clickRadioBtnBranch(practiceForm.getOtherRadioBtn())
-                .inputMobileNumber(numbersMobile)
-                .inputDateClick(strDate);
-
-    }
-
-    @Test
-    @Tag("ALERTSFRAMEWINDOWS")
-    public void enterListAlertsFrameWindowsCounts5Test() {
-        PracticeForm practiceForm = new PracticeForm();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterListAlertsFrameWindows()
-                .assertionsListCount5();
-    }
-
-    @Test
-    @Tag("ALERTSFRAMEWINDOWS")
-    public void enterBrowserWindowsTest() {
-        PracticeForm practiceForm = new PracticeForm();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterListAlertsFrameWindows()
-                .enterBrowsers()
-                .newTabWindowsBrowserWindows()
-                .assertionsCount2Windows();
-    }
-
-    @Test
-    @Tag("ALERTSFRAMEWINDOWS")
-    public void enterBrowserWindowsToSwitchTextTest() {
-        PracticeForm practiceForm = new PracticeForm();
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterListAlertsFrameWindows()
-                .enterBrowsers()
-                .newTabWindowsBrowserWindows()
-                .switchTwoWindows()
-                .assertionsToWindowsText("Thread QA Sample");
-    }
-    @Test
-    public void a() throws FileNotDownloadedError {
-      String url = mainWebSiteTest.enterElementsClick()
-               .brokenLinksImagesClick()
-               .getInvalidUrl();
-//      Selenide.open(url);
-//      $x("//pre").should(Condition.text("Cannot GET /images/ThreadQa.jpg"));
-        Assertions.assertThrows(FileNotDownloadedError.class,  () -> Selenide.download(url)) ;
-    }
-
-}
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void inputElementsTextBoxTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .textBoxClick()
+//                .inputFullNameEnter(fullName)
+//                .inputEmailEnter(email)
+//                .inputCurrentAddressEnter(address1)
+//                .inputPermanentAddressEnter(address2)
+//                .clickSubmitBtn()
+//                .assert1FullName(fullName)
+//                .assert2Email(email)
+//                .assert3CurrentAddress(address1)
+//                .assert4PermanentAddress(address2);
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void clickElementsCheckBoxTest() {//TODO пункт1
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .checkBoxClick()
+//                .clickAllCheckListEnter()
+//                .assertionsCount6Elements()
+//                .clickAllCheckListClose()//TODO пункт 2
+//                .assertionsCount0Elements();
+//    }
+//
+//    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
+//    @Tag("ELEMENTS")
+//    public void clickElementsCheckBoxManySelenideElementsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        List<SelenideElement> checkBoxesToClick = new ArrayList<>();
+//        checkBoxesToClick.add(checkBox.getCheckNotes());
+//        checkBoxesToClick.add(checkBox.getCheckCommands());
+//        mainThreadQa.enterElementsClick()
+//                .checkBoxClick()
+//                .clickArrayHome()
+//                .clickArrayDesktop()
+//                .clicksCheckBoxes(checkBoxesToClick);
+//        //assertsCheckBox(checkBoxesToClick);
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void radioBtnYesClickTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .radioButtonClick()
+//                .radioButtonYesClick()
+//                .assertionsYouHAveSelected("Yes");// TODO, вероятно нужно извлекать элемент .text
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void radioBtnImpressiveClickTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .radioButtonClick()
+//                .radioButtonImpressiveClick()
+//                .assertionsYouHAveSelected("Impressive");// TODO, вероятно нужно извлекать элемент .text
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void radioBtnDisablesNoTest() {//TODO, пункт 4 моего файла
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .radioButtonClick()
+//                .radioButtonNoHover()
+//                .assertionsDisabled();
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .webTables()
+//                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
+//    }
+//
+////    @Test
+////    @Tag("ELEMENTS")
+////    public void webTablesClickTest() {
+////        Selenide.open("/");
+////        MainThreadQa mainThreadQa = new MainThreadQa();
+////        mainThreadQa.enterElementsClick()
+////                .webTables()
+////                .createClickAddBtn()
+////                .setValueInputFirstName(firstName)
+////                .setValueInputLastName(fullName)
+////                .setValueInputEmail(email)
+////                .setValueInputAge(age)
+////                .setValueSalary(salary)
+////                .setValueDepartment(departament)
+////                .clickSubmit()
+////                .inputSearch(email)
+////                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
+////                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
+////                .assertionInSearch(firstName)
+////                .assertionInSearch(fullName)
+////                .assertionInSearch(email)
+////                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
+////                .assertionInSearch(salary);
+////    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void buttonsDoubleClickTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .buttonsClick()
+//                .doubleClickMeMethods()
+//                .assertClick("double");// TODO Как то извлечь одно слово?
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void buttonsRightClickTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .buttonsClick()
+//                .rightClickMeBMethods()
+//                .assertClick("right");
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void buttonsClickMeTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .buttonsClick()
+//                .clickMeMethods()
+//                .assertClick("dynamic");
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void linksNewWindowsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .linksClick()
+//                .enterNewWindows()
+//                .assertionsCountWindows2(Links.class);
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void linksSwitchWindowsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .linksClick()
+//                .enterNewWindows()
+//                .switchTwoWindows();
+//        Links links = new Links();
+//        links.assertionsCountWindows2(Links.class);
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void brokenLinksImagesValidLinkEnterTest() {
+//        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .brokenLinksImagesClick()
+//                .validLinkEnter(brokenLinksImages.getValidlinkBtn())
+//                .assertionsNewLink()
+//                .assertionsNewLinkH1Google()
+//                .assertionUrl("https://www.google.com");
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void brokenLinksImagesInvalidLinkEnterTest() {
+//        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .brokenLinksImagesClick()
+//                .validLinkEnter(brokenLinksImages.getInvalidLink())
+//                .assertionsNewLink();
+//        // TODO здесь проверку чрз rest-assure лучше сделать на статус код 500?
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void downloadFileTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .uploadAndDownloadClick()
+//                .downloadFile();
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void uploadFileTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .uploadAndDownloadClick()
+//                .uploadFile();
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void dynamicPropertiesTestNotEnabledElementsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .dynamicPropertiesClick()
+//                .elementsNoEnabled4seconds();
+//    }
+//
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void dynamicPropertiesTestEnabledElementsTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElementsClick()
+//                .dynamicPropertiesClick()
+//                .elementsEnabled5seconds();
+//    }
+//
+//    @Test
+//    public void practiceFormClikTest() {
+//        PracticeForm practiceForm = new PracticeForm();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterPracticeFormClick()
+//                .practiceFormBtnEnterClick()
+//                .inputFirstName(firstName)
+//                .inputLastName(lastName)
+//                .inputEmail(email)
+//                .clickRadioBtnBranch(practiceForm.getOtherRadioBtn())
+//                .inputMobileNumber(numbersMobile)
+//                .inputDateClick(strDate);
+//
+//    }
+//
+//    @Test
+//    @Tag("ALERTSFRAMEWINDOWS")
+//    public void enterListAlertsFrameWindowsCounts5Test() {
+//        PracticeForm practiceForm = new PracticeForm();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterListAlertsFrameWindows()
+//                .assertionsListCount5();
+//    }
+//
+//    @Test
+//    @Tag("ALERTSFRAMEWINDOWS")
+//    public void enterBrowserWindowsTest() {
+//        PracticeForm practiceForm = new PracticeForm();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterListAlertsFrameWindows()
+//                .enterBrowsers()
+//                .newTabWindowsBrowserWindows()
+//                .assertionsCount2Windows();
+//    }
+//
+//    @Test
+//    @Tag("ALERTSFRAMEWINDOWS")
+//    public void enterBrowserWindowsToSwitchTextTest() {
+//        PracticeForm practiceForm = new PracticeForm();
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterListAlertsFrameWindows()
+//                .enterBrowsers()
+//                .newTabWindowsBrowserWindows()
+//                .switchTwoWindows()
+//                .assertionsToWindowsText("Thread QA Sample");
+//    }
+//    @Test
+//    public void a() throws FileNotDownloadedError {
+//      String url = mainThreadQa.enterElementsClick()
+//               .brokenLinksImagesClick()
+//               .getInvalidUrl();
+////      Selenide.open(url);
+////      $x("//pre").should(Condition.text("Cannot GET /images/ThreadQa.jpg"));
+//        Assertions.assertThrows(FileNotDownloadedError.class,  () -> Selenide.download(url)) ;
+//    }
+//
+//}

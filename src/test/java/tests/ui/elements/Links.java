@@ -4,10 +4,9 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import org.junit.jupiter.api.Assertions;
-import tests.ui.MainWebSiteTest;
+import tests.ui.MainThreadQa;
 
 import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import static com.codeborne.selenide.Selenide.$x;
@@ -31,11 +30,11 @@ public class Links {
         return classes;
     }
 
-    public MainWebSiteTest switchTwoWindows(){
+    public MainThreadQa switchTwoWindows(){
         Iterator<String> iterator = windowsDriver().iterator();
         iterator.next();
         String secondWindowHandle = iterator.next();
         WebDriverRunner.getWebDriver().switchTo().window(secondWindowHandle);
-        return page(MainWebSiteTest.class);
+        return page(MainThreadQa.class);
     }
 }
