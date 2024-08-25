@@ -49,6 +49,7 @@ public class CheckBox {
         return this;
     }
     public CheckBox assertionsCount6Elements(){
+  allListClassElements.size();
         allListClassElements.should(CollectionCondition.size(6));
         return this;
     }

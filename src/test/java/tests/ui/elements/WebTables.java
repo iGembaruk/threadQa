@@ -68,7 +68,7 @@ public class WebTables {
         return this;
     }
 
-    public WebTables assertionDefaultClickDropDownWindowsCountRows(int i){
+    public WebTables assertionDropDownCountRows(int i){
         clickCountRowsBtn.click();
         dropDownList.should(CollectionCondition.size(6)).get(i).click();
         return this;
@@ -80,12 +80,12 @@ public class WebTables {
         listStringTablesCount.should(CollectionCondition.size(count));
     return this;
     }
-    public WebTables assertionStringIsSearch(String searchElement){
+    public WebTables assertionInSearch(String searchElement){
         searchResultCollection.find(Condition.partialText(searchElement));
         return this;
     }
 
-    public WebTables assertionIntegerIsSearch(Integer searchElement){
+    public WebTables assertionInSearch(Integer searchElement){
         String searchElementString = searchElement.toString();
         searchResultCollection.find(Condition.partialText(searchElementString));
         return this;

@@ -46,4 +46,9 @@ public class BrokenLinksImages {
         getActualUrl().equals(str);
         return this;
     }
+    public String getInvalidUrl(){
+        return $x("//p[text()='Broken image']//following::img").getAttribute("src");
+    }
+
+
 }

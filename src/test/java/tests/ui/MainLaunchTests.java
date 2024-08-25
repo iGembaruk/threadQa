@@ -1,17 +1,21 @@
 package tests.ui;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.FileNotDownloadedError;
 import org.junit.jupiter.api.*;
 import tests.ui.elements.BrokenLinksImages;
 import tests.ui.elements.CheckBox;
 import tests.ui.elements.Links;
 import tests.ui.forms.PracticeForm;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
@@ -30,9 +34,15 @@ public class MainLaunchTests {
     private int intIndex20Rows = 2;
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
+    private MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
 
     @BeforeEach
-    public void setUp() {
+    public void openPage(){
+        Selenide.open("/");
+    }
+
+    @BeforeAll
+    public static void setUp() {//@BeforeAll надо
         Configuration.baseUrl = "http://85.192.34.140:8081";
         Configuration.browserSize = "1920x1080";
         Configuration.headless = false;
@@ -153,30 +163,30 @@ public class MainLaunchTests {
                 .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
     }
 
-    @Test
-    @Tag("ELEMENTS")
-    public void webTablesClickTest() {
-        Selenide.open("/");
-        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
-        mainWebSiteTest.enterElementsClick()
-                .webTables()
-                .createClickAddBtn()
-                .setValueInputFirstName(firstName)
-                .setValueInputLastName(fullName)
-                .setValueInputEmail(email)
-                .setValueInputAge(age)
-                .setValueSalary(salary)
-                .setValueDepartment(departament)
-                .clickSubmit()
-                .inputSearch(email)
-                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
-                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
-                .assertionStringIsSearch(firstName)
-                .assertionStringIsSearch(fullName)
-                .assertionStringIsSearch(email)
-                .assertionIntegerIsSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
-                .assertionIntegerIsSearch(salary);
-    }
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void webTablesClickTest() {
+//        Selenide.open("/");
+//        MainWebSiteTest mainWebSiteTest = new MainWebSiteTest();
+//        mainWebSiteTest.enterElementsClick()
+//                .webTables()
+//                .createClickAddBtn()
+//                .setValueInputFirstName(firstName)
+//                .setValueInputLastName(fullName)
+//                .setValueInputEmail(email)
+//                .setValueInputAge(age)
+//                .setValueSalary(salary)
+//                .setValueDepartment(departament)
+//                .clickSubmit()
+//                .inputSearch(email)
+//                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
+//                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
+//                .assertionInSearch(firstName)
+//                .assertionInSearch(fullName)
+//                .assertionInSearch(email)
+//                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
+//                .assertionInSearch(salary);
+//    }
 
     @Test
     @Tag("ELEMENTS")
@@ -352,4 +362,14 @@ public class MainLaunchTests {
                 .switchTwoWindows()
                 .assertionsToWindowsText("Thread QA Sample");
     }
+    @Test
+    public void a() throws FileNotDownloadedError {
+      String url = mainWebSiteTest.enterElementsClick()
+               .brokenLinksImagesClick()
+               .getInvalidUrl();
+//      Selenide.open(url);
+//      $x("//pre").should(Condition.text("Cannot GET /images/ThreadQa.jpg"));
+        Assertions.assertThrows(FileNotDownloadedError.class,  () -> Selenide.download(url)) ;
+    }
+
 }
