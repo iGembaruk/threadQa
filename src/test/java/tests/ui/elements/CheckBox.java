@@ -5,8 +5,6 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
-import java.util.List;
-
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -18,6 +16,9 @@ public class CheckBox {
     SelenideElement homeArrayBtn;
     SelenideElement homeCheckBoxBtn = $x("//span[@class='rct-title']");
 
+    //развернутые блоки с элементами.
+    ElementsCollection expandedElements = $$x("//li[@class='rct-node rct-node-parent rct-node-expanded']");
+
     SelenideElement arrayHomeBtn = $x("//li[@class='rct-node rct-node-parent rct-node-collapsed']/span/button[@aria-label='Toggle']");
 
     SelenideElement arrayDesktopBtn = $x("//li[contains(@class, 'collapsed')][1]//button");
@@ -26,47 +27,39 @@ public class CheckBox {
     SelenideElement checkCommands = $x("//label[@for='tree-node-commands']//span[@class='rct-checkbox']");
     ElementsCollection collectionsElementsIsCheckBox = $$x("//span[@class='text-success']");
 
-    public CheckBox assertHeaderPartialText(String assertExpectedStr){
-    headerCheckBox.should(Condition.visible).should(Condition.partialText(assertExpectedStr));
+    public CheckBox assertHeaderPartialText(String assertExpectedStr) {
+        headerCheckBox.should(Condition.visible).should(Condition.partialText(assertExpectedStr));
         return this;
     }
-//    public SelenideElement getCheckNotes() {
-//        return checkNotes;
-//    }
-//
-//    public SelenideElement getCheckCommands() {
-//        return checkCommands;
-//    }
-//
-//    public ElementsCollection getCollectionsElementsIsCheckBox() {
-//        return collectionsElementsIsCheckBox;
-//    }
-//
-//    SelenideElement arrayDocumentsBtn = $x("");
-//    SelenideElement arrayDownloadsBtn = $x("");
-//
+
+    public CheckBox clickPlusBtn() {
+        plusBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public CheckBox clickMinusBtn() {
+        minusBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public CheckBox assertCountExpendedElements(int countExpected){
+        expandedElements.should(CollectionCondition.size(countExpected));
+        return this;
+    }
+
+
 //    SelenideElement checkBoxHomeAllSelected = $x("//label[@for='tree-node-home']");
 //    SelenideElement result = $x("//div[@id='result']");
 //
-//    public CheckBox assertCountElementsIsDropDown(){
-//        allListClassElements.size();
-//        allListClassElements.should(CollectionCondition.size(6));
-//        return this;
-//    }
+
 //
-//    public CheckBox clickAllCheckListEnter() {
-//        plusBtn.should(Condition.visible).click();
-//        return this;
-//    }
+//
 //
 //    public CheckBox clickAllCheckListClose(){
 //        minusBtn.should(Condition.visible).click();
 //        return this;
 //    }
-//    public CheckBox assertionsCount0Elements(){
-//        allListClassElements.should(CollectionCondition.size(0));
-//        return this;
-//    }
+//
 //
 //    public CheckBox clickArrayHome(){
 //        arrayHomeBtn.should(Condition.visible).click();

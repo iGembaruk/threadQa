@@ -9,7 +9,6 @@ import tests.ui.elements.CheckBox;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
@@ -44,7 +43,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void enterMainPageThreadQATest() {
+    public void enterMainPageThreadQaTest() {
         int countBtn = 6;
         mainThreadQa.assertHeaderVisible()
                 .assertCountBtnsMainPage(countBtn);
@@ -100,19 +99,21 @@ public class MainLaunchTests {
                 .enterCheckBox()
                 .assertHeaderPartialText(expectedTextHeader);
     }
-}
 
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void clickElementsCheckBoxTest() {
-//        mainThreadQa.enterElements()
-//                .checkBoxClick()
-//                .clickAllCheckListEnter()
-//                .assertionsCount6Elements()
-//                .clickAllCheckListClose()//TODO пункт 2
-//                .assertionsCount0Elements();
-//    }
-//}
+
+    @Test
+    @Tag("ELEMENTS")
+    public void clickElementsCheckBoxTest() {
+        mainThreadQa.enterElements()
+                .enterCheckBox()
+                .assertCountExpendedElements(0)
+                .clickPlusBtn()
+                .assertCountExpendedElements(6)
+                .clickMinusBtn()
+                .assertCountExpendedElements(0);
+
+    }
+}
 //    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
 //    @Tag("ELEMENTS")
 //    public void clickElementsCheckBoxManySelenideElementsTest() {
