@@ -15,7 +15,6 @@ public class ElementsMain {
     SelenideElement elementsBtn = $x("//div[@class='header-text'][text()='Elements']");
     ElementsCollection listIs9elementsIsList = $$x("//div[@class='element-list collapse show']/ul/li");
 
-//    ElementsCollection listDropDownUl = $$x("//ul[@class='menu-list']");
     SelenideElement textBoxBtn = $x("//span[@class='text'][text()='Text Box']");
 
     SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
@@ -44,15 +43,11 @@ public class ElementsMain {
         return this;
     }
 
-//    public void assertionsNovisibleElementsList(){
-//        listDropDownUl.get(1).should(Condition.hidden);
-//    }
-
-    public TextBox textBoxClick(){
+    public TextBox enterTextBox(){
         textBoxBtn.should(visible).click();
         return page(TextBox.class);
     }
-    public CheckBox checkBoxClick(){
+    public CheckBox enterCheckBox(){
         checkBox.should(visible).click();
         return page(CheckBox.class);
     }

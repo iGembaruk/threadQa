@@ -28,7 +28,7 @@ public class MainThreadQa {
         return this;
     }
 
-    public ElementsMain enterElementsClick(){
+    public ElementsMain enterElements(){
         elementsBtn.click();
         return Selenide.page(ElementsMain.class);
     }

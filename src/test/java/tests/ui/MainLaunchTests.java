@@ -9,19 +9,16 @@ import tests.ui.elements.CheckBox;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
-    private String fullName = "Gembaruk Igor";
     private String firstName = "Oki";
     private String lastName = "blabla";
-    private String email = "i.gembaruk@mail.ru";
-    private String address1 = "ul1 d.13";
     private Integer age = 27;
     private Integer salary = 100000;
     private String numbersMobile = "9656363968";
     private String strDate = "01 Aug 2025";
-    private String address2 = "ul2 d.23";
     private String departament = "Penza";
     private int indexCollectionRowsDefault = 1;
     private int intIndex20Rows = 2;
@@ -47,7 +44,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void enterMainPageThreadQATest(){
+    public void enterMainPageThreadQATest() {
         int countBtn = 6;
         mainThreadQa.assertHeaderVisible()
                 .assertCountBtnsMainPage(countBtn);
@@ -58,54 +55,64 @@ public class MainLaunchTests {
     public void dropDownElementsClickTest() {
         int countBeforeClickElements = 9;
         int countAfterClickElements = 0;
-        mainThreadQa.enterElementsClick()
+        mainThreadQa.enterElements()
                 .assertCountsElementsDropDown(countBeforeClickElements)
                 .oneClickElements()
                 .assertCountsElementsDropDown(countAfterClickElements);
+    }
+
+
+    @Test
+    @Tag("ELEMENTS")
+    public void enterTextBoxAssertHeaderTextTest() {
+        String assertExpectedHeaderTextBox = "Text Box";
+        mainThreadQa.enterElements()
+                .enterTextBox()
+                .assertHeaderPartialText(assertExpectedHeaderTextBox);
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void inputElementsTextBoxTest() {
+        String fullName = "Gembaruk Igor";
+        String email = "i.gembaruk@mail.ru";
+        String currentAddress = "ul1 d.13";
+        String permanentAddress = "ul2 d.23";
+
+        mainThreadQa.enterElements()
+                .enterTextBox()
+                .inputFullName(fullName)
+                .inputEmail(email)
+                .inputCurrentAddress(currentAddress)
+                .inputPermanentAddress(permanentAddress)
+                .clickSubmitBtn()
+                .assert1FullName(fullName)
+                .assert2Email(email)
+                .assert3CurrentAddress(currentAddress)
+                .assert4PermanentAddress(permanentAddress);
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void enterCheckBoxAssertHeaderTextTest() {
+        String expectedTextHeader = "Check Box";
+        mainThreadQa.enterElements()
+                .enterCheckBox()
+                .assertHeaderPartialText(expectedTextHeader);
     }
 }
 
 //    @Test
 //    @Tag("ELEMENTS")
-//    public void clickElementsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .dropDownWindows()
-//                .textBoxClick();
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void inputElementsTextBoxTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .textBoxClick()
-//                .inputFullNameEnter(fullName)
-//                .inputEmailEnter(email)
-//                .inputCurrentAddressEnter(address1)
-//                .inputPermanentAddressEnter(address2)
-//                .clickSubmitBtn()
-//                .assert1FullName(fullName)
-//                .assert2Email(email)
-//                .assert3CurrentAddress(address1)
-//                .assert4PermanentAddress(address2);
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void clickElementsCheckBoxTest() {//TODO пункт1
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
+//    public void clickElementsCheckBoxTest() {
+//        mainThreadQa.enterElements()
 //                .checkBoxClick()
 //                .clickAllCheckListEnter()
 //                .assertionsCount6Elements()
 //                .clickAllCheckListClose()//TODO пункт 2
 //                .assertionsCount0Elements();
 //    }
-//
+//}
 //    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
 //    @Tag("ELEMENTS")
 //    public void clickElementsCheckBoxManySelenideElementsTest() {
