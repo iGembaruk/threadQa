@@ -13,19 +13,19 @@ public class CheckBox {
 
     SelenideElement plusBtn = $x("//button[@aria-label='Expand all']");
     SelenideElement minusBtn = $x("//button[@aria-label='Collapse all']");
-    SelenideElement homeArrayBtn;
+    SelenideElement homeArrowCheckBoxBtn = $x("//button[@class='rct-collapse rct-collapse-btn']");
     SelenideElement homeCheckBoxBtn = $x("//span[@class='rct-title']");
 
     //развернутые блоки с элементами.
     ElementsCollection expandedElements = $$x("//li[@class='rct-node rct-node-parent rct-node-expanded']");
 
-    SelenideElement arrayHomeBtn = $x("//li[@class='rct-node rct-node-parent rct-node-collapsed']/span/button[@aria-label='Toggle']");
-
-    SelenideElement arrayDesktopBtn = $x("//li[contains(@class, 'collapsed')][1]//button");
-    //вот эти три
-    SelenideElement checkNotes = $x("//label[@for='tree-node-notes']//span[@class='rct-checkbox']");
-    SelenideElement checkCommands = $x("//label[@for='tree-node-commands']//span[@class='rct-checkbox']");
-    ElementsCollection collectionsElementsIsCheckBox = $$x("//span[@class='text-success']");
+    //Descktop
+    SelenideElement arrowDesktopBtn = $x("//li[contains(@class, 'collapsed')][1]//button");
+    SelenideElement desktopCheckBoxBtn = $x("//label[@for='tree-node-desktop']");
+    SelenideElement notesCheckBoxBtn = $x("//label[@for='tree-node-notes']//span[@class='rct-checkbox']");
+    SelenideElement commandsCheckBoxBtn = $x("//label[@for='tree-node-commands']//span[@class='rct-checkbox']");
+    //Проверки
+    SelenideElement fieldActiveCheckBox = $x("//div[@class='display-result mt-4']");
 
     public CheckBox assertHeaderPartialText(String assertExpectedStr) {
         headerCheckBox.should(Condition.visible).should(Condition.partialText(assertExpectedStr));
@@ -47,45 +47,23 @@ public class CheckBox {
         return this;
     }
 
+    public CheckBox clickArrowHomeBtn(){
+        homeArrowCheckBoxBtn.should(Condition.enabled).click();
+        return this;
+    }
 
-//    SelenideElement checkBoxHomeAllSelected = $x("//label[@for='tree-node-home']");
-//    SelenideElement result = $x("//div[@id='result']");
-//
+    public CheckBox clickDesktopArrowBtn(){
+        arrowDesktopBtn.should(Condition.enabled).click();
+        return this;
+    }
 
-//
-//
-//
-//    public CheckBox clickAllCheckListClose(){
-//        minusBtn.should(Condition.visible).click();
-//        return this;
-//    }
-//
-//
-//    public CheckBox clickArrayHome(){
-//        arrayHomeBtn.should(Condition.visible).click();
-//        return this;
-//    }
-//
-//    public CheckBox clickArrayDesktop(){
-//        arrayDesktopBtn.should(Condition.visible).click();
-//        return this;
-//    }
-//
-//    public CheckBox clicksCheckBoxes(List<SelenideElement> elements){
-//        elements.forEach(x->x.should(Condition.visible).click());
-//        return this;
-//    }
-//    public CheckBox assertsCheckBox(List<SelenideElement> elements){
-//        List<String> textsToCheck = elements.stream()
-//                        .map(SelenideElement::getText)
-//                                .toList();
-//        for(String text : textsToCheck){
-//            collectionsElementsIsCheckBox.find(Condition.partialText(text)).should(Condition.exist);
-//        }
-//        return this;
-//    }
-//
-//
-//
+    public CheckBox clickNotesBtn(){
+        notesCheckBoxBtn.should(Condition.enabled).click();
+        return this;
+    }
 
+    public CheckBox assertActiveFieldCheckBox(String assertStr){
+    fieldActiveCheckBox.should(Condition.visible).should(Condition.partialText(assertStr));
+        return this;
+    }
 }

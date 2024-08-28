@@ -1,15 +1,11 @@
 package tests.ui.elements;
 
 import com.codeborne.selenide.CollectionCondition;
-import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.impl.CollectionElement;
-import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
-import static java.util.function.Predicate.not;
 
 public class ElementsMain {
     SelenideElement elementsBtn = $x("//div[@class='header-text'][text()='Elements']");
@@ -17,7 +13,7 @@ public class ElementsMain {
 
     SelenideElement textBoxBtn = $x("//span[@class='text'][text()='Text Box']");
 
-    SelenideElement checkBox = $x("//span[@class='text'][text()='Check Box']");
+    SelenideElement checkBoxBtn = $x("//span[@class='text'][text()='Check Box']");
 
     SelenideElement radioButtonBtn = $x("//span[@class='text'][text()='Radio Button']");
     SelenideElement webTablesBtn = $x("//span[@class='text'][text()='Web Tables']");
@@ -48,11 +44,11 @@ public class ElementsMain {
         return page(TextBox.class);
     }
     public CheckBox enterCheckBox(){
-        checkBox.should(visible).click();
+        checkBoxBtn.should(visible).click();
         return page(CheckBox.class);
     }
 
-    public RadioButton radioButtonClick(){
+    public RadioButton enterRadioButton(){
        radioButtonBtn.should(visible).click();
        return page(RadioButton.class);
     }

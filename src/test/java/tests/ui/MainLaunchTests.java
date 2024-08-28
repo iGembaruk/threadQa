@@ -113,44 +113,35 @@ public class MainLaunchTests {
                 .assertCountExpendedElements(0);
 
     }
-}
-//    @Test//TODO, 3ий пункт. работает без проверки .assertsCheckBox(checkBoxesToClick)
-//    @Tag("ELEMENTS")
-//    public void clickElementsCheckBoxManySelenideElementsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        List<SelenideElement> checkBoxesToClick = new ArrayList<>();
-//        checkBoxesToClick.add(checkBox.getCheckNotes());
-//        checkBoxesToClick.add(checkBox.getCheckCommands());
-//        mainThreadQa.enterElementsClick()
-//                .checkBoxClick()
-//                .clickArrayHome()
-//                .clickArrayDesktop()
-//                .clicksCheckBoxes(checkBoxesToClick);
-//        //assertsCheckBox(checkBoxesToClick);
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void radioBtnYesClickTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .radioButtonClick()
-//                .radioButtonYesClick()
-//                .assertionsYouHAveSelected("Yes");// TODO, вероятно нужно извлекать элемент .text
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void radioBtnImpressiveClickTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .radioButtonClick()
-//                .radioButtonImpressiveClick()
-//                .assertionsYouHAveSelected("Impressive");// TODO, вероятно нужно извлекать элемент .text
-//    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void clickCheckBoxTest() {
+        mainThreadQa.enterElements()
+                .enterCheckBox()
+                .clickArrowHomeBtn()
+                .clickDesktopArrowBtn()
+                .clickNotesBtn()
+                .assertActiveFieldCheckBox("Notes");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void radioBtnYesClickTest() {
+        mainThreadQa.enterElements()
+                .enterRadioButton()
+                .radioButtonYesClick()
+                .assertActiveFieldCheckBox("Yes");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void radioBtnImpressiveClickTest() {
+        mainThreadQa.enterElements()
+                .enterRadioButton()
+                .radioButtonImpressiveClick()
+                .assertActiveFieldCheckBox("Impressive");
+    }
 //
 //    @Test
 //    @Tag("ELEMENTS")
@@ -382,4 +373,4 @@ public class MainLaunchTests {
 //        Assertions.assertThrows(FileNotDownloadedError.class,  () -> Selenide.download(url)) ;
 //    }
 //
-//}
+}

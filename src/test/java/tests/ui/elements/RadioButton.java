@@ -8,22 +8,22 @@ import static com.codeborne.selenide.Selenide.$x;
 public class RadioButton {
     SelenideElement radioButtonRdBtnYes =$x("//label[@class='custom-control-label'][text()='Yes']");
     SelenideElement impressiveRdBtn =$x("//label[@class='custom-control-label'][not(text()='Yes')]");
-    SelenideElement assertionsYouHAveSelected = $x("//span[@class='text-success']");
+    SelenideElement fieldActiveRadioButton = $x("//p[@class='mt-3']");
 
     SelenideElement notClickNo = $x("//input[@class='custom-control-input disabled']");
 
     public RadioButton radioButtonYesClick(){
-        radioButtonRdBtnYes.should(Condition.visible).click();
+        radioButtonRdBtnYes.should(Condition.enabled).click();
         return this;
     }
 
     public RadioButton radioButtonImpressiveClick(){
-        impressiveRdBtn.should(Condition.visible).click();
+        impressiveRdBtn.should(Condition.enabled).click();
         return this;
     }
 
-    public RadioButton assertionsYouHAveSelected(String strBtn){
-        assertionsYouHAveSelected.should(Condition.partialText(strBtn));
+    public RadioButton assertActiveFieldCheckBox(String assertStr){
+        fieldActiveRadioButton.should(Condition.visible).should(Condition.partialText(assertStr));
         return this;
     }
     public RadioButton radioButtonNoHover(){
