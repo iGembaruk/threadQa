@@ -24,22 +24,22 @@ public class TextBox {
         return this;
     }
 
-    public TextBox inputFullName(String string){
+    public TextBox setInputFullName(String string){
         inputFullName.should(Condition.enabled).setValue(string);
         return this;
     }
 
-    public TextBox inputEmail(String string){
+    public TextBox setInputEmail(String string){
         inputEmail.should(Condition.enabled).setValue(string);
         return this;
     }
 
-    public TextBox inputCurrentAddress(String string){
+    public TextBox setInputCurrentAddress(String string){
         inputCurrentAddress.should(Condition.enabled).setValue(string);
         return this;
     }
 
-    public TextBox inputPermanentAddress(String string){
+    public TextBox setInputPermanentAddress(String string){
         inputPermanentAddress.should(Condition.enabled).setValue(string);
         return this;
     }
