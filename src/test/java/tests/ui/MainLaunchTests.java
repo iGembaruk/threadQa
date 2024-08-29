@@ -19,7 +19,6 @@ public class MainLaunchTests {
     private String numbersMobile = "9656363968";
     private String strDate = "01 Aug 2025";
     private String departament = "Penza";
-    private int indexCollectionRowsDefault = 1;
     private int intIndex20Rows = 2;
     CheckBox checkBox = new CheckBox();
     List<SelenideElement> elements = new ArrayList<>();
@@ -142,27 +141,25 @@ public class MainLaunchTests {
                 .radioButtonImpressiveClick()
                 .assertActiveFieldCheckBox("Impressive");
     }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void radioBtnDisablesNoTest() {//TODO, пункт 4 моего файла
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .radioButtonClick()
-//                .radioButtonNoHover()
-//                .assertionsDisabled();
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .webTables()
-//                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
-//    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void radioBtnDisablesNoTest() {
+        mainThreadQa.enterElements()
+                .enterRadioButton()
+                .radioButtonNoHover()
+                .assertionsDisabled();
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
+        int indexCollectionRowsDefault = 1;
+
+        mainThreadQa.enterElements()
+                .enterWebTables()
+                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
+    }
 //
 ////    @Test
 ////    @Tag("ELEMENTS")

@@ -53,7 +53,7 @@ public class ElementsMain {
        return page(RadioButton.class);
     }
 
-    public WebTables webTables(){
+    public WebTables enterWebTables(){
         webTablesBtn.should(visible).click();
         return page(WebTables.class);
     }

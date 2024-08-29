@@ -26,6 +26,8 @@ public class RadioButton {
         fieldActiveRadioButton.should(Condition.visible).should(Condition.partialText(assertStr));
         return this;
     }
+
+
     public RadioButton radioButtonNoHover(){
         notClickNo.should(Condition.hidden).hover();
         return this;
