@@ -12,15 +12,10 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
-    private String firstName = "Oki";
-    private String lastName = "blabla";
-    private Integer age = 27;
-    private Integer salary = 100000;
-    private String numbersMobile = "9656363968";
-    private String strDate = "01 Aug 2025";
-    private String departament = "Penza";
-    private int intIndex20Rows = 2;
-    CheckBox checkBox = new CheckBox();
+
+    int intIndex20Rows = 2;
+
+
     List<SelenideElement> elements = new ArrayList<>();
     private MainThreadQa mainThreadQa = new MainThreadQa();
 
@@ -153,38 +148,56 @@ public class MainLaunchTests {
 
     @Test
     @Tag("ELEMENTS")
-    public void webTablesAssertionCountTablesColumnAndIntRowsDropWindowsTest() {
+    public void enterWebTablesAssertHeaderTextTest() {
+        String assertExpectedHeaderTextBox = "Web Tables";
+        mainThreadQa.enterElements()
+                .enterWebTables()
+                .assertHeaderPartialText(assertExpectedHeaderTextBox);
+    }
+
+    @Test
+    @Tag("ELEMENTS")//Нужен рефакторинг метода проверки.
+    public void webTablesDefaultAssertQuantityColumnEqualsQuantitySelectRowsTest() {
         int indexCollectionRowsDefault = 1;
 
         mainThreadQa.enterElements()
                 .enterWebTables()
-                .assertCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
+                .assertQuantityColumnEqualsQuantitySelectRows(indexCollectionRowsDefault);
     }
 
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void webTablesClickTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElements()
-//                .webTables()
-//                .createClickAddBtn()
-//                .setValueInputFirstName(firstName)
-//                .setValueInputLastName(fullName)
-//                .setValueInputEmail(email)
-//                .setValueInputAge(age)
-//                .setValueSalary(salary)
-//                .setValueDepartment(departament)
-//                .clickSubmit()
-//                .inputSearch(email)
-//                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
-//                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
-//                .assertionInSearch(firstName)
-//                .assertionInSearch(fullName)
-//                .assertionInSearch(email)
-//                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
-//                .assertionInSearch(salary);
-//    }
+    @Test
+    @Tag("ELEMENTS")
+    public void webTablesClickTest() {
+        String firstName = "Igor";
+        String lastName = "Gembaruk";
+        String email = "i.gembaruk@mail.ru";
+        Integer age = 27;
+        Integer salary = 100000;
+        String numbersMobile = "9656363968";
+        String strDate = "01 Aug 2025";
+        String departament = "Penza";
+
+        Selenide.open("/");
+        MainThreadQa mainThreadQa = new MainThreadQa();
+        mainThreadQa.enterElements()
+                .enterWebTables()
+                .createClickAddBtn()
+                .setValueInputFirstName(firstName)
+                .setValueInputLastName(lastName)
+                .setValueInputEmail(email)
+                .setValueInputAge(age)
+                .setValueSalary(salary)
+                .setValueDepartment(departament)
+                .clickSubmit()
+                .inputSearch(email)
+                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
+                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
+                .assertionInSearch(firstName)
+                .assertionInSearch(fullName)
+                .assertionInSearch(email)
+                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
+                .assertionInSearch(salary);
+    }
 
 //    @Test
 //    @Tag("ELEMENTS")
