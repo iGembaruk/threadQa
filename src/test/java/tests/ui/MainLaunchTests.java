@@ -158,34 +158,34 @@ public class MainLaunchTests {
 
         mainThreadQa.enterElements()
                 .enterWebTables()
-                .assertionsCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
+                .assertCountColumnInTablesOnIntRowsDropWindows(indexCollectionRowsDefault);
     }
-//
-////    @Test
-////    @Tag("ELEMENTS")
-////    public void webTablesClickTest() {
-////        Selenide.open("/");
-////        MainThreadQa mainThreadQa = new MainThreadQa();
-////        mainThreadQa.enterElementsClick()
-////                .webTables()
-////                .createClickAddBtn()
-////                .setValueInputFirstName(firstName)
-////                .setValueInputLastName(fullName)
-////                .setValueInputEmail(email)
-////                .setValueInputAge(age)
-////                .setValueSalary(salary)
-////                .setValueDepartment(departament)
-////                .clickSubmit()
-////                .inputSearch(email)
-////                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
-////                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
-////                .assertionInSearch(firstName)
-////                .assertionInSearch(fullName)
-////                .assertionInSearch(email)
-////                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
-////                .assertionInSearch(salary);
-////    }
-//
+
+//    @Test
+//    @Tag("ELEMENTS")
+//    public void webTablesClickTest() {
+//        Selenide.open("/");
+//        MainThreadQa mainThreadQa = new MainThreadQa();
+//        mainThreadQa.enterElements()
+//                .webTables()
+//                .createClickAddBtn()
+//                .setValueInputFirstName(firstName)
+//                .setValueInputLastName(fullName)
+//                .setValueInputEmail(email)
+//                .setValueInputAge(age)
+//                .setValueSalary(salary)
+//                .setValueDepartment(departament)
+//                .clickSubmit()
+//                .inputSearch(email)
+//                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
+//                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
+//                .assertionInSearch(firstName)
+//                .assertionInSearch(fullName)
+//                .assertionInSearch(email)
+//                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
+//                .assertionInSearch(salary);
+//    }
+
 //    @Test
 //    @Tag("ELEMENTS")
 //    public void buttonsDoubleClickTest() {
