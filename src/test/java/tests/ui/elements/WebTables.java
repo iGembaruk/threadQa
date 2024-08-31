@@ -45,15 +45,13 @@ public class WebTables {
         inputEmail.should(Condition.visible).setValue(email);
         return this;
     }
-    public WebTables setValueInputAge(Integer age){
-        String ageString = age.toString();
-        inputAge.should(Condition.visible).setValue(ageString);
+    public WebTables setValueInputAge(String age){
+        inputAge.should(Condition.visible).setValue(age);
         return this;
     }
 
-    public WebTables setValueSalary(Integer salary){
-        String salaryString = salary.toString();
-        inputSalary.should(Condition.visible).setValue(salaryString);
+    public WebTables setValueSalary(String salary){
+        inputSalary.should(Condition.visible).setValue(salary);
         return this;
     }
     public WebTables setValueDepartment(String department){
@@ -81,22 +79,22 @@ public class WebTables {
 //        return this;
 //    }
     public WebTables assertQuantityColumnEqualsQuantitySelectRows(int index){
-        String tempStrDropDownIndex2 = selectIsList6Rows.get(index).text();
-        String[] countStringArray = tempStrDropDownIndex2.split("\\D+");
-        int count = Integer.parseInt(countStringArray[0]);
-        resultSearchOneColumnTablesCollection.should(CollectionCondition.size(count));
+        String stringDropDownQuantityRows = selectIsList6Rows.get(index).text();
+        String[] countStringArray = stringDropDownQuantityRows.split("\\D+");
+        int quantity = Integer.parseInt(countStringArray[0]);
+        resultSearchOneColumnTablesCollection.should(CollectionCondition.size(quantity));
     return this;
     }
 
-//    public WebTables assertionInSearch(String searchElement){
-//        searchResultCollection.find(Condition.partialText(searchElement));
-//        return this;
-//    }
-//
-//    public WebTables assertionInSearch(Integer searchElement){
-//        String searchElementString = searchElement.toString();
-//        searchResultCollection.find(Condition.partialText(searchElementString));
-//        return this;
-//    }
+    public WebTables assertionInSearch(String searchElement){
+        resultSearchOneColumnTablesCollection.find(Condition.partialText(searchElement));
+        return this;
+    }
+
+    public WebTables assertionInSearch(Integer searchElement){
+        String searchElementString = searchElement.toString();
+        resultSearchOneColumnTablesCollection.find(Condition.partialText(searchElementString));
+        return this;
+    }
 
 }
