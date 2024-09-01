@@ -86,12 +86,12 @@ public class WebTables {
     return this;
     }
 
-    public WebTables assertionInSearch(String searchElement){
+    public WebTables assertInSearch(String searchElement){
         resultSearchOneColumnTablesCollection.find(Condition.partialText(searchElement));
         return this;
     }
 
-    public WebTables assertionInSearch(Integer searchElement){
+    public WebTables assertInSearch(Integer searchElement){
         String searchElementString = searchElement.toString();
         resultSearchOneColumnTablesCollection.find(Condition.partialText(searchElementString));
         return this;

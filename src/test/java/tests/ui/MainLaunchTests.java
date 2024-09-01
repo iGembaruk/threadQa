@@ -4,7 +4,6 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
-import tests.ui.elements.CheckBox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +11,8 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
-
+    String numbersMobile = "9656363968";
+    String strDate = "01 Aug 2025";
     int intIndex20Rows = 2;
 
 
@@ -165,37 +165,33 @@ public class MainLaunchTests {
                 .assertQuantityColumnEqualsQuantitySelectRows(indexCollectionRowsDefault);
     }
 
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void webTablesClickTest() {
-//        String firstName = "Igor";
-//        String lastName = "Gembaruk";
-//        String email = "i.gembaruk@mail.ru";
-//        String age = "27";
-//        String salary = "100000";
-//        String numbersMobile = "9656363968";
-//        String strDate = "01 Aug 2025";
-//        String departament = "Пенза";
-//
-//        mainThreadQa.enterElements()
-//                .enterWebTables()
-//                .createClickAddBtn()
-//                .setValueInputFirstName(firstName)
-//                .setValueInputLastName(lastName)
-//                .setValueInputEmail(email)
-//                .setValueInputAge(age)
-//                .setValueSalary(salary)
-//                .setValueDepartment(departament)
-//                .clickSubmit()
-//                //.inputSearch(email)
-//                .assertionDefaultClickDropDownWindowsCountRows(intIndex20Rows)
-//                .assertionsCountColumnInTablesOnIntRowsDropWindows(intIndex20Rows)
-//                .assertionInSearch(firstName)
-//                .assertionInSearch(fullName)
-//                .assertionInSearch(email)
-//                .assertionInSearch(age)//TODO, Возможно, что этот метод проверки стоит завязать на том, что необходимо искать не по тексту, а по числам, но не смог сделать
-//                .assertionInSearch(salary);
-//    }
+    @Test
+    @Tag("ELEMENTS")
+    public void webTablesClickTest() {
+        String firstName = "Igor";
+        String lastName = "Gembaruk";
+        String email = "i.gembaruk@mail.ru";
+        String age = "27";
+        String salary = "100000";
+        String departament = "Пенза";
+
+        mainThreadQa.enterElements()
+                .enterWebTables()
+                .createClickAddBtn()
+                .setValueInputFirstName(firstName)
+                .setValueInputLastName(lastName)
+                .setValueInputEmail(email)
+                .setValueInputAge(age)
+                .setValueSalary(salary)
+                .setValueDepartment(departament)
+                .clickSubmit()
+                .setInputSearch(email)
+                .assertInSearch(firstName)
+                .assertInSearch(lastName)
+                .assertInSearch(email)
+                .assertInSearch(age)
+                .assertInSearch(salary);
+    }
 
 //    @Test
 //    @Tag("ELEMENTS")
