@@ -58,27 +58,27 @@ public class ElementsMain {
         return page(WebTables.class);
     }
 
-    public Buttons buttonsClick(){
+    public Buttons enterButtons(){
         buttonBtn.should(visible).click();
         return page(Buttons.class);
     }
 
-    public Links linksClick(){
+    public Links enterLinks(){
         linksBtn.should(visible).click();
         return page(Links.class);
     }
 
-    public BrokenLinksImages brokenLinksImagesClick(){
+    public BrokenLinksImages enterBrokenLinksImages(){
         brokenLinksImagesBtn.should(visible).click();
         return page(BrokenLinksImages.class);
     }
 
-    public UploadAndDownload uploadAndDownloadClick(){
+    public UploadAndDownload enterUploadAndDownload(){
         uploadAndDownloadBtn.should(visible).click();
         return page(UploadAndDownload.class);
     }
 
-    public DynamicProperties dynamicPropertiesClick(){
+    public DynamicProperties enterDynamicProperties(){
         dynamicPropertiesBtn.should(visible).click();
         return page(DynamicProperties.class);
     }

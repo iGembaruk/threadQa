@@ -4,6 +4,11 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -21,11 +26,11 @@ public class WebTables {
     SelenideElement inputSearch = $x("//input[@placeholder='Type to search']");
     ElementsCollection listUsers = $$x("//div[@class='rt-tbody']/div");
 
-    SelenideElement selectedRows = $x("//select[@aria-label='rows per page']");
     ElementsCollection selectIsList6Rows = $$x("//select[@aria-label='rows per page']//option");
     ElementsCollection resultSearchOneColumnTablesCollection = $$x("//div[@class='rt-td'][1]");
 
     SelenideElement webTablesHeader = $x("//div[@class='pattern-backgound playgound-header']");
+    SelenideElement selectFirstName = $x("//div[text()='First Name']");
 
     public WebTables createClickAddBtn(){
         addBtn.should(Condition.visible).click();
@@ -96,5 +101,41 @@ public class WebTables {
         resultSearchOneColumnTablesCollection.find(Condition.partialText(searchElementString));
         return this;
     }
+
+    public WebTables clickFirstName(){
+        selectFirstName.should(Condition.enabled).click();
+        return this;
+    }
+
+    public List<String> newCollectionsAreColumnFirstName(){
+        ElementsCollection list = $$x("//div[@class='rt-td'][1]");
+        List<String> collectionsStringFirstName = list.texts();
+        List<String> collectionFilterNoBlank = new ArrayList<>();
+        int i = 0;
+        while(!collectionsStringFirstName.get(i).isBlank()){
+        collectionFilterNoBlank.add(collectionsStringFirstName.get(i));
+        i++;
+        }
+        return collectionFilterNoBlank;
+    }
+
+    public List<String> newCollectionsAreColumnFirstNameStream(){
+        ElementsCollection list = $$x("//div[@class='rt-td'][1]");
+        List<String> collectionFilterNoBlankFirstName = list
+                .texts()
+                .stream()
+                .filter(string -> !string.isBlank())
+                .collect(Collectors.toList());
+        return collectionFilterNoBlankFirstName;
+    }
+
+    public List<String> listSorted(List<String> list){
+        return list.stream()
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+
+
 
 }

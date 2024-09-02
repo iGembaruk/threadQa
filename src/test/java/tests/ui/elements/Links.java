@@ -15,7 +15,7 @@ import static com.codeborne.selenide.Selenide.page;
 public class Links {
     SelenideElement linkHomeBtn = $x("//a[@id='simpleLink']");
 
-    public Links enterNewWindows(){
+    public Links enterNewWindowsHome(){
         linkHomeBtn.should(Condition.visible).click();
         return this;
     }
@@ -25,9 +25,9 @@ public class Links {
         return handles;
     }
 
-    public <T> T assertionsCountWindows2(T classes){
+    public Links assertCountWindows2(){
         Assertions.assertEquals(2, windowsDriver().size());
-        return classes;
+        return this;
     }
 
     public MainThreadQa switchTwoWindows(){

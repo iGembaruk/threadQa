@@ -14,16 +14,8 @@ public class BrokenLinksImages {
 
     SelenideElement invalidLink = $x("//a[@href='http://the-internet.herokuapp.com/status_codes/500']");
 
-    public SelenideElement getValidlinkBtn() {
-        return validlinkBtn;
-    }
-
-    public SelenideElement getInvalidLink() {
-        return invalidLink;
-    }
-
-    public BrokenLinksImages validLinkEnter(SelenideElement locator){
-        locator.should(Condition.visible).click();
+    public BrokenLinksImages validLinkEnter(){
+        validlinkBtn.should(Condition.enabled).click();
         return this;
     }
 
@@ -46,9 +38,4 @@ public class BrokenLinksImages {
         getActualUrl().equals(str);
         return this;
     }
-    public String getInvalidUrl(){
-        return $x("//p[text()='Broken image']//following::img").getAttribute("src");
-    }
-
-
 }

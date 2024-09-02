@@ -11,11 +11,11 @@ public class Buttons {
     SelenideElement clickMeBtn = $x("//button[text()='Click Me']");
     SelenideElement assertElement = $x("//p");
 
-    public Buttons doubleClickMeMethods(){
+    public Buttons doubleClickMe(){
         doubleClickMeBtn.should(Condition.visible).doubleClick();
         return this;
     }
-    public Buttons rightClickMeBMethods(){
+    public Buttons rightClickMe(){
     rightClickMeBtn.should(Condition.visible).contextClick();
             return this;
     }

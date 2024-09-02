@@ -4,6 +4,8 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.junit.jupiter.api.*;
+import tests.ui.elements.Links;
+import tests.ui.elements.WebTables;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +16,6 @@ public class MainLaunchTests {
     String numbersMobile = "9656363968";
     String strDate = "01 Aug 2025";
     int intIndex20Rows = 2;
-
 
     List<SelenideElement> elements = new ArrayList<>();
     private MainThreadQa mainThreadQa = new MainThreadQa();
@@ -29,6 +30,7 @@ public class MainLaunchTests {
         Configuration.baseUrl = "http://85.192.34.140:8081";
         Configuration.browserSize = "1920x1080";
         Configuration.headless = false;
+        Configuration.timeout = 2000;
     }
 
     @AfterEach
@@ -167,7 +169,7 @@ public class MainLaunchTests {
 
     @Test
     @Tag("ELEMENTS")
-    public void webTablesClickTest() {
+    public void webTablesAddNewUserTest() {
         String firstName = "Igor";
         String lastName = "Gembaruk";
         String email = "i.gembaruk@mail.ru";
@@ -193,130 +195,114 @@ public class MainLaunchTests {
                 .assertInSearch(salary);
     }
 
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void buttonsDoubleClickTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .buttonsClick()
-//                .doubleClickMeMethods()
-//                .assertClick("double");// TODO Как то извлечь одно слово?
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void buttonsRightClickTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .buttonsClick()
-//                .rightClickMeBMethods()
-//                .assertClick("right");
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void buttonsClickMeTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .buttonsClick()
-//                .clickMeMethods()
-//                .assertClick("dynamic");
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void linksNewWindowsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .linksClick()
-//                .enterNewWindows()
-//                .assertionsCountWindows2(Links.class);
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void linksSwitchWindowsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .linksClick()
-//                .enterNewWindows()
-//                .switchTwoWindows();
-//        Links links = new Links();
-//        links.assertionsCountWindows2(Links.class);
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void brokenLinksImagesValidLinkEnterTest() {
-//        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .brokenLinksImagesClick()
-//                .validLinkEnter(brokenLinksImages.getValidlinkBtn())
-//                .assertionsNewLink()
-//                .assertionsNewLinkH1Google()
-//                .assertionUrl("https://www.google.com");
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void brokenLinksImagesInvalidLinkEnterTest() {
-//        BrokenLinksImages brokenLinksImages = new BrokenLinksImages();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .brokenLinksImagesClick()
-//                .validLinkEnter(brokenLinksImages.getInvalidLink())
-//                .assertionsNewLink();
-//        // TODO здесь проверку чрз rest-assure лучше сделать на статус код 500?
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void downloadFileTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .uploadAndDownloadClick()
-//                .downloadFile();
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void uploadFileTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .uploadAndDownloadClick()
-//                .uploadFile();
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void dynamicPropertiesTestNotEnabledElementsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .dynamicPropertiesClick()
-//                .elementsNoEnabled4seconds();
-//    }
-//
-//    @Test
-//    @Tag("ELEMENTS")
-//    public void dynamicPropertiesTestEnabledElementsTest() {
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterElementsClick()
-//                .dynamicPropertiesClick()
-//                .elementsEnabled5seconds();
-//    }
-//
+
+
+    @Test
+    public void webTablesSortedFirstNameTest(){
+        mainThreadQa.enterElements()
+                .enterWebTables();
+
+        WebTables webTables = new WebTables();
+        List<String> listDefault = webTables.newCollectionsAreColumnFirstNameStream();
+        webTables.clickFirstName();
+        List<String> listClickFirstName = webTables.newCollectionsAreColumnFirstNameStream();
+        Assertions.assertNotEquals(listDefault, listClickFirstName);
+
+        Assertions.assertEquals(listClickFirstName, webTables.listSorted(listDefault));
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void buttonsDoubleClickTest() {
+        mainThreadQa.enterElements()
+                .enterButtons()
+                .doubleClickMe()
+                .assertClick("double");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void buttonsRightClickTest() {
+        mainThreadQa.enterElements()
+                .enterButtons()
+                .rightClickMe()
+                .assertClick("right");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void buttonsClickMeTest() {
+        mainThreadQa.enterElements()
+                .enterButtons()
+                .clickMeMethods()
+                .assertClick("dynamic");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void linksSwitchWindowsTest() {
+        mainThreadQa.enterElements()
+                .enterLinks()
+                .enterNewWindowsHome()
+                .assertCountWindows2()
+                .switchTwoWindows();
+
+        Links links = new Links();
+        links.assertCountWindows2();
+    }
+
+
+    @Test
+    @Tag("ELEMENTS")
+    public void brokenLinksImagesValidLinkEnterTest() {
+        MainThreadQa mainThreadQa = new MainThreadQa();
+        mainThreadQa.enterElements()
+                .enterBrokenLinksImages()
+                .validLinkEnter()
+                .assertionsNewLink()
+                .assertionsNewLinkH1Google()
+                .assertionUrl("https://www.google.com");
+    }
+
+    //TODO, добавить тест проверки битой ссылки.
+
+
+    @Test
+    @Tag("ELEMENTS")
+    public void downloadFileTest() {
+        mainThreadQa.enterElements()
+                .enterUploadAndDownload()
+                .downloadFile("sticker.png");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void uploadFileTest() {
+        mainThreadQa.enterElements()
+                .enterUploadAndDownload()
+                .uploadFile("src/test/resources/ArcheAge_sample.jpg");
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void dynamicPropertiesTestNotEnabledElementsTest() {
+        mainThreadQa.enterElements()
+                .enterDynamicProperties()
+                .elementsNoEnabled4seconds()
+                .elementsEnabled5seconds();
+
+    }
+
+    @Test
+    @Tag("ELEMENTS")
+    public void dynamicPropertiesTestEnabledElementsTest() {
+        mainThreadQa.enterElements()
+                .enterDynamicProperties()
+                .elementsEnabled5seconds()
+                .elementVisibleAfter5Seconds();//TODO, необходимо перейти, описана проблема, элемент вроде не должен здесь быть.
+
+    }
+
 //    @Test
 //    public void practiceFormClikTest() {
 //        PracticeForm practiceForm = new PracticeForm();
@@ -367,6 +353,7 @@ public class MainLaunchTests {
 //                .switchTwoWindows()
 //                .assertionsToWindowsText("Thread QA Sample");
 //    }
+
 //    @Test
 //    public void a() throws FileNotDownloadedError {
 //      String url = mainThreadQa.enterElementsClick()
