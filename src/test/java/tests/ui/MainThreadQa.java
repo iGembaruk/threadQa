@@ -33,7 +33,7 @@ public class MainThreadQa {
         return Selenide.page(ElementsMain.class);
     }
 
-    public PracticeForm enterPracticeFormClick(){
+    public PracticeForm enterForms(){
         formsBtn.should(Condition.visible).click();
         return Selenide.page(PracticeForm.class);
     }

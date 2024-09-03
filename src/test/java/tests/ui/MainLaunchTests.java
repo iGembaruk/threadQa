@@ -13,9 +13,7 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class MainLaunchTests {
-    String numbersMobile = "9656363968";
-    String strDate = "01 Aug 2025";
-    int intIndex20Rows = 2;
+
 
     List<SelenideElement> elements = new ArrayList<>();
     private MainThreadQa mainThreadQa = new MainThreadQa();
@@ -303,21 +301,26 @@ public class MainLaunchTests {
 
     }
 
-//    @Test
-//    public void practiceFormClikTest() {
-//        PracticeForm practiceForm = new PracticeForm();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterPracticeFormClick()
-//                .practiceFormBtnEnterClick()
-//                .inputFirstName(firstName)
-//                .inputLastName(lastName)
-//                .inputEmail(email)
-//                .clickRadioBtnBranch(practiceForm.getOtherRadioBtn())
-//                .inputMobileNumber(numbersMobile)
-//                .inputDateClick(strDate);
-//
-//    }
+    @Test
+    public void practiceFormClikTest() {
+        String firstName = "Igor";
+        String lastName = "Gembaruk";
+        String email = "i.gembaruk@mail.ru";
+        String age = "27";
+        String salary = "100000";
+        String departament = "Пенза";
+        String numbersMobile = "9656363968";
+        String strDate = "01 Aug 2025";
+        mainThreadQa.enterForms()
+                .enterPracticeForm()
+                .inputFirstName(firstName)
+                .inputLastName(lastName)
+                .inputEmail(email)
+                .clickRadioBtnMale()
+                .inputMobileNumber(numbersMobile);
+                //.inputDateClick(strDate);
+
+    }
 //
 //    @Test
 //    @Tag("ALERTSFRAMEWINDOWS")

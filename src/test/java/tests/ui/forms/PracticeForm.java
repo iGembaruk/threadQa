@@ -20,22 +20,9 @@ public class PracticeForm {
     SelenideElement otherRadioBtn = $x("//div[@class='custom-control custom-radio custom-control-inline'][3]");
 
     SelenideElement inputNumberMobile = $x("//input[@placeholder='Mobile Number']");
-    SelenideElement inputDateOfBirth = $x("//input[@id='dateOfBirthInput']");
+    SelenideElement inputDateOfBirthClick = $x("//input[@id='dateOfBirthInput']");
 
-
-    public SelenideElement getMaleRadioBtn() {
-        return maleRadioBtn;
-    }
-
-    public SelenideElement getFemaleRadioBtn() {
-        return femaleRadioBtn;
-    }
-
-    public SelenideElement getOtherRadioBtn() {
-        return otherRadioBtn;
-    }
-
-    public PracticeForm practiceFormBtnEnterClick(){
+    public PracticeForm enterPracticeForm(){
         practiceFormBtn.should(Condition.visible).click();
        return this;
     }
@@ -55,30 +42,29 @@ public class PracticeForm {
         return this;
     }
 
-    public SelenideElement clickRadioBtn(SelenideElement element){
-        element.should(Condition.visible).click();
-        return element;
-    }
-
-    public PracticeForm clickRadioBtnBranch(SelenideElement element){
-        clickRadioBtn(element);
+    public PracticeForm clickRadioBtnMale(){
+        maleRadioBtn.should(Condition.enabled).click();
         return this;
     }
-//    public PracticeForm clickRadioBtn(){
-//        maleRadioBtn.should(Condition.visible).click();
-//        return this;
-//    }
+
+    public PracticeForm clickRadioBtnFemale(){
+        femaleRadioBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public PracticeForm clickRadioBtnOther(){
+        otherRadioBtn.should(Condition.enabled).click();
+        return this;
+    }
 
     public PracticeForm inputMobileNumber(String numbersMobile){
         inputNumberMobile.should(Condition.visible).setValue(numbersMobile);
         return this;
     }
 
-    public PracticeForm inputDateClick(String strDate){//TODO сlear не очищает поле.setValue(), вернее очищает, но далее когда снова окно кликается выбирается текущая дата, как очистить? Или лучше выбирать по окнам?!
-        inputDateOfBirth.should(Condition.visible, Duration.ofSeconds(5));
-        inputDateOfBirth.setValue(strDate);
-        return this;
-    }
-
-
+//    public PracticeForm inputDateClick(String strDate){//TODO сlear не очищает поле.setValue(), вернее очищает, но далее когда снова окно кликается выбирается текущая дата, как очистить? Или лучше выбирать по окнам?!
+//        inputDateOfBirth.should(Condition.visible, Duration.ofSeconds(5));
+//        inputDateOfBirth.setValue(strDate);
+//        return this;
+//    }
 }
