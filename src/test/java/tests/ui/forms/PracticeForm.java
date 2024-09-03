@@ -3,8 +3,6 @@ package tests.ui.forms;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 
-import java.time.Duration;
-
 import static com.codeborne.selenide.Selenide.$x;
 
 public class PracticeForm {
@@ -27,17 +25,17 @@ public class PracticeForm {
        return this;
     }
 
-    public PracticeForm inputFirstName(String strFirstName){
+    public PracticeForm setInputFirstName(String strFirstName){
         inputFirstName.should(Condition.visible).setValue(strFirstName);
         return this;
     }
 
-    public PracticeForm inputLastName(String strLastName){
+    public PracticeForm setInputLastName(String strLastName){
         inputLastName.should(Condition.visible).setValue(strLastName);
         return this;
     }
 
-    public PracticeForm inputEmail(String strEmail){
+    public PracticeForm setInputEmail(String strEmail){
         inputEmail.should(Condition.visible).setValue(strEmail);
         return this;
     }
@@ -57,8 +55,13 @@ public class PracticeForm {
         return this;
     }
 
-    public PracticeForm inputMobileNumber(String numbersMobile){
+    public PracticeForm setInputMobileNumber(String numbersMobile){
         inputNumberMobile.should(Condition.visible).setValue(numbersMobile);
+        return this;
+    }
+
+    public PracticeForm setInputSubject(String subject){
+        inputNumberMobile.should(Condition.visible).setValue(subject);
         return this;
     }
 

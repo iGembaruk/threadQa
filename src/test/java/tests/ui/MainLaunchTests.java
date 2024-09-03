@@ -308,17 +308,19 @@ public class MainLaunchTests {
         String email = "i.gembaruk@mail.ru";
         String age = "27";
         String salary = "100000";
-        String departament = "Пенза";
+        String subject = "Пенза";
         String numbersMobile = "9656363968";
         String strDate = "01 Aug 2025";
+        String currentAddress = "street Lunacharskogo";
         mainThreadQa.enterForms()
                 .enterPracticeForm()
-                .inputFirstName(firstName)
-                .inputLastName(lastName)
-                .inputEmail(email)
+                .setInputFirstName(firstName)
+                .setInputLastName(lastName)
+                .setInputEmail(email)
                 .clickRadioBtnMale()
-                .inputMobileNumber(numbersMobile);
-                //.inputDateClick(strDate);
+                .setInputMobileNumber(numbersMobile)
+                //.inputDateClick(strDate)
+                .
 
     }
 //
