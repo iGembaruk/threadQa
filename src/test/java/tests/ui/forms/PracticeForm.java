@@ -19,6 +19,9 @@ public class PracticeForm {
 
     SelenideElement inputNumberMobile = $x("//input[@placeholder='Mobile Number']");
     SelenideElement inputDateOfBirthClick = $x("//input[@id='dateOfBirthInput']");
+    SelenideElement widowCalendar = $x("//div[@class='react-datepicker__month-container']");
+
+    private String strSearchDate = "//div[contains(@class, '--0%d')]";
 
     public PracticeForm enterPracticeForm(){
         practiceFormBtn.should(Condition.visible).click();
@@ -62,6 +65,17 @@ public class PracticeForm {
 
     public PracticeForm setInputSubject(String subject){
         inputNumberMobile.should(Condition.visible).setValue(subject);
+        return this;
+    }
+
+    private SelenideElement getDay(int day){
+        return $x(String.format(strSearchDate, day));
+    }
+
+    public PracticeForm setDateOfBirth(int day){
+        inputDateOfBirthClick.click();
+        widowCalendar.should(Condition.visible);
+        getDay(day).click();
         return this;
     }
 

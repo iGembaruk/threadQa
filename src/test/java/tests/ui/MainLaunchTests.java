@@ -310,7 +310,7 @@ public class MainLaunchTests {
         String salary = "100000";
         String subject = "Пенза";
         String numbersMobile = "9656363968";
-        String strDate = "01 Aug 2025";
+        int strDate = 25;
         String currentAddress = "street Lunacharskogo";
         mainThreadQa.enterForms()
                 .enterPracticeForm()
@@ -319,9 +319,14 @@ public class MainLaunchTests {
                 .setInputEmail(email)
                 .clickRadioBtnMale()
                 .setInputMobileNumber(numbersMobile)
-                //.inputDateClick(strDate)
-                .
-
+                .setDateOfBirth(strDate)
+                .setInputSubject(subject);
+                //Hobbeis Btn
+                //Upload file
+                //Current Address String
+                //dropDown Stat
+                //dropDown City
+                //submit click
     }
 //
 //    @Test
