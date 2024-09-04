@@ -2,6 +2,9 @@ package tests.ui.forms;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import org.junit.jupiter.api.Assertions;
+
+import java.io.File;
 
 import static com.codeborne.selenide.Selenide.$x;
 
@@ -20,6 +23,12 @@ public class PracticeForm {
     SelenideElement inputNumberMobile = $x("//input[@placeholder='Mobile Number']");
     SelenideElement inputDateOfBirthClick = $x("//input[@id='dateOfBirthInput']");
     SelenideElement widowCalendar = $x("//div[@class='react-datepicker__month-container']");
+
+    SelenideElement checkBoxSportsBtn = $x("//label[@class='custom-control-label'][text()='Sports']");
+    SelenideElement checkBoxReadingBtn = $x("//label[@class='custom-control-label'][text()='Reading']");
+    SelenideElement checkBoxMusicBtn = $x("//label[@class='custom-control-label'][text()='Music']");
+
+    SelenideElement uploadBtn = $x("//input[@id='uploadPicture']");
 
     private String strSearchDate = "//div[contains(@class, '--0%d')]";
 
@@ -78,10 +87,25 @@ public class PracticeForm {
         getDay(day).click();
         return this;
     }
+    public PracticeForm setClickBtnCheckBoxSports(){
+        checkBoxSportsBtn.should(Condition.enabled).click();
+        return this;
+    }
 
-//    public PracticeForm inputDateClick(String strDate){//TODO сlear не очищает поле.setValue(), вернее очищает, но далее когда снова окно кликается выбирается текущая дата, как очистить? Или лучше выбирать по окнам?!
-//        inputDateOfBirth.should(Condition.visible, Duration.ofSeconds(5));
-//        inputDateOfBirth.setValue(strDate);
-//        return this;
-//    }
+    public PracticeForm setClickBtnCheckBoxReading(){
+        checkBoxReadingBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public PracticeForm setClickBtnCheckBoxMusic(){
+        checkBoxMusicBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public PracticeForm uploadFileAndAssertName(String path, String nameFile) {
+        File fileToUpload = new File(path);
+        uploadBtn.uploadFile(fileToUpload);
+        Assertions.assertEquals(fileToUpload.getName(), nameFile);
+        return this;
+    }
 }

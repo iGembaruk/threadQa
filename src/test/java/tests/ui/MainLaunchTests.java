@@ -320,9 +320,9 @@ public class MainLaunchTests {
                 .clickRadioBtnMale()
                 .setInputMobileNumber(numbersMobile)
                 .setDateOfBirth(strDate)
-                .setInputSubject(subject);
-                //Hobbeis Btn
-                //Upload file
+                .setInputSubject(subject)
+                .setClickBtnCheckBoxSports()
+                .uploadFileAndAssertName("src/test/resources/ArcheAge_sample.jpg", "ArcheAge_sample.jpg");
                 //Current Address String
                 //dropDown Stat
                 //dropDown City
