@@ -306,38 +306,40 @@ public class MainLaunchTests {
         String firstName = "Igor";
         String lastName = "Gembaruk";
         String email = "i.gembaruk@mail.ru";
-        String age = "27";
-        String salary = "100000";
-        String subject = "Пенза";
+        String subject = "m";
         String numbersMobile = "9656363968";
         int strDate = 25;
         String currentAddress = "street Lunacharskogo";
         mainThreadQa.enterForms()
                 .enterPracticeForm()
                 .setInputFirstName(firstName)
+                .assertFirstName(firstName)
                 .setInputLastName(lastName)
+                .assertLastName(lastName)
                 .setInputEmail(email)
+                .assertEmail(email)
                 .clickRadioBtnMale()
+                .assertSelectedRadioBtnMale()
                 .setInputMobileNumber(numbersMobile)
+                .assertMobileNumber(numbersMobile)
                 .setDateOfBirth(strDate)
-                .setInputSubject(subject)
+                .assertEqualsDate(strDate)
+                .setSelectSubject(subject, 0)
                 .setClickBtnCheckBoxSports()
-                .uploadFileAndAssertName("src/test/resources/ArcheAge_sample.jpg", "ArcheAge_sample.jpg");
-                //Current Address String
-                //dropDown Stat
-                //dropDown City
-                //submit click
+                .assertBtnCheckBoxSportsChecked()
+                .uploadFileAndAssertName("src/test/resources/ArcheAge_sample.jpg", "ArcheAge_sample.jpg")
+                .setValueCurrentAddress(currentAddress)
+                .setSelectState(0)
+                .setSelectCity(0)
+                .clickSubmitBtn();
     }
-//
-//    @Test
-//    @Tag("ALERTSFRAMEWINDOWS")
-//    public void enterListAlertsFrameWindowsCounts5Test() {
-//        PracticeForm practiceForm = new PracticeForm();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterListAlertsFrameWindows()
-//                .assertionsListCount5();
-//    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterListAlertsFrameWindowsCounts5Test() {
+        mainThreadQa.enterListAlertsFrameWindows()
+                .assertionsListQuantityt5();
+    }
 //
 //    @Test
 //    @Tag("ALERTSFRAMEWINDOWS")

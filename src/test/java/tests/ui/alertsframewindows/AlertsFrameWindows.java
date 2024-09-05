@@ -12,7 +12,7 @@ public class AlertsFrameWindows {
 
     SelenideElement browserWindowsBtn = $x("//li[@class='btn btn-light ']//span[@class='text'][text()='Browser Windows']");
 
-    public AlertsFrameWindows assertionsListCount5(){
+    public AlertsFrameWindows assertionsListQuantityt5(){
         listDropDownCount5.should(CollectionCondition.size(5));
         return this;
     }
