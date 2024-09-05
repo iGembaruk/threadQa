@@ -14,17 +14,16 @@ import static com.codeborne.selenide.Selenide.page;
 public class BrowserWindows {
     SelenideElement newTabBtn = $x("//button[@class='btn btn-primary'][text()='New Tab']");
 
-    public BrowserWindows newTabWindowsBrowserWindows(){
-        newTabBtn.should(Condition.visible).click();
+    public BrowserWindows newTabClick(){
+        newTabBtn.should(Condition.enabled).click();
       return this;
     }
 
     public Set<String> windowsDriver(){
-        Set<String> handles = WebDriverRunner.getWebDriver().getWindowHandles();
-        return handles;
+        return WebDriverRunner.getWebDriver().getWindowHandles();
     }
 
-    public BrowserWindows assertionsCount2Windows(){
+    public BrowserWindows assertCount2Windows(){
         Assertions.assertEquals(2,windowsDriver().size());
         return this;
     }

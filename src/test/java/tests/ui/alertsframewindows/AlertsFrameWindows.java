@@ -16,7 +16,7 @@ public class AlertsFrameWindows {
         listDropDownCount5.should(CollectionCondition.size(5));
         return this;
     }
-    public BrowserWindows enterBrowsers(){
+    public BrowserWindows enterBrowserWindows(){
         browserWindowsBtn.should(Condition.visible).click();
         return page(BrowserWindows.class);
     }

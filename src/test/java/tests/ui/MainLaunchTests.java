@@ -302,7 +302,7 @@ public class MainLaunchTests {
     }
 
     @Test
-    public void practiceFormClikTest() {
+    public void practiceFormClickTest() {
         String firstName = "Igor";
         String lastName = "Gembaruk";
         String email = "i.gembaruk@mail.ru";
@@ -340,25 +340,19 @@ public class MainLaunchTests {
         mainThreadQa.enterListAlertsFrameWindows()
                 .assertionsListQuantityt5();
     }
-//
-//    @Test
-//    @Tag("ALERTSFRAMEWINDOWS")
-//    public void enterBrowserWindowsTest() {
-//        PracticeForm practiceForm = new PracticeForm();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
-//        mainThreadQa.enterListAlertsFrameWindows()
-//                .enterBrowsers()
-//                .newTabWindowsBrowserWindows()
-//                .assertionsCount2Windows();
-//    }
-//
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterBrowserWindowsTest() {
+        mainThreadQa.enterListAlertsFrameWindows()
+                .enterBrowserWindows()
+                .newTabClick()
+                .assertCount2Windows();
+    }
+
 //    @Test
 //    @Tag("ALERTSFRAMEWINDOWS")
 //    public void enterBrowserWindowsToSwitchTextTest() {
-//        PracticeForm practiceForm = new PracticeForm();
-//        Selenide.open("/");
-//        MainThreadQa mainThreadQa = new MainThreadQa();
 //        mainThreadQa.enterListAlertsFrameWindows()
 //                .enterBrowsers()
 //                .newTabWindowsBrowserWindows()
