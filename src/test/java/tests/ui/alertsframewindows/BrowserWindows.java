@@ -8,11 +8,12 @@ import org.junit.jupiter.api.Assertions;
 import java.util.Iterator;
 import java.util.Set;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BrowserWindows {
     SelenideElement newTabBtn = $x("//button[@class='btn btn-primary'][text()='New Tab']");
+    SelenideElement newWindowBtn = $x("//button[@id='windowButton']");
+    SelenideElement newWindowMessageBtn = $x("//button[@id='messageWindowButton']");
 
     public BrowserWindows newTabClick(){
         newTabBtn.should(Condition.enabled).click();
@@ -34,9 +35,18 @@ public class BrowserWindows {
         WebDriverRunner.getWebDriver().switchTo().window(secondWindowHandle);
         return this;
     }
-    public BrowserWindows assertionsToWindowsText(String str){
-        $x("//h1").should(Condition.visible).text().equals(str);
+    public BrowserWindows assertToWindowsH1Text(String str){
+        $x("//h1").shouldHave(Condition.text(str));
         return this;
     }
 
+    public BrowserWindows newWindowClick(){
+        newWindowBtn.should(Condition.enabled).click();
+        return this;
+    }
+
+    public BrowserWindows newWindowMessageClick(){
+        newWindowMessageBtn.should(Condition.enabled).click();
+        return this;
+    }
 }

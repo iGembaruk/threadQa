@@ -107,26 +107,24 @@ public class WebTables {
         return this;
     }
 
-    public List<String> newCollectionsAreColumnFirstName(){
-        ElementsCollection list = $$x("//div[@class='rt-td'][1]");
-        List<String> collectionsStringFirstName = list.texts();
-        List<String> collectionFilterNoBlank = new ArrayList<>();
-        int i = 0;
-        while(!collectionsStringFirstName.get(i).isBlank()){
-        collectionFilterNoBlank.add(collectionsStringFirstName.get(i));
-        i++;
-        }
-        return collectionFilterNoBlank;
-    }
+//    public List<String> newCollectionsAreColumnFirstName(){
+//        ElementsCollection list = $$x("//div[@class='rt-td'][1]");
+//        List<String> collectionsStringFirstName = list.texts();
+//        List<String> collectionFilterNoBlank = new ArrayList<>();
+//        int i = 0;
+//        while(!collectionsStringFirstName.get(i).isBlank()){
+//        collectionFilterNoBlank.add(collectionsStringFirstName.get(i));
+//        i++;
+//        }
+//        return collectionFilterNoBlank;
+//    }
 
     public List<String> newCollectionsAreColumnFirstNameStream(){
         ElementsCollection list = $$x("//div[@class='rt-td'][1]");
-        List<String> collectionFilterNoBlankFirstName = list
-                .texts()
+        return list.texts()
                 .stream()
                 .filter(string -> !string.isBlank())
                 .collect(Collectors.toList());
-        return collectionFilterNoBlankFirstName;
     }
 
     public List<String> listSorted(List<String> list){

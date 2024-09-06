@@ -262,9 +262,6 @@ public class MainLaunchTests {
                 .assertionUrl("https://www.google.com");
     }
 
-    //TODO, добавить тест проверки битой ссылки.
-
-
     @Test
     @Tag("ELEMENTS")
     public void downloadFileTest() {
@@ -337,37 +334,60 @@ public class MainLaunchTests {
     @Test
     @Tag("ALERTSFRAMEWINDOWS")
     public void enterListAlertsFrameWindowsCounts5Test() {
-        mainThreadQa.enterListAlertsFrameWindows()
+        mainThreadQa.enterAlertsFrameWindows()
                 .assertionsListQuantityt5();
     }
 
     @Test
     @Tag("ALERTSFRAMEWINDOWS")
-    public void enterBrowserWindowsTest() {
-        mainThreadQa.enterListAlertsFrameWindows()
+    public void enterBrowserWindowsNewTabTest() {
+        mainThreadQa.enterAlertsFrameWindows()
                 .enterBrowserWindows()
                 .newTabClick()
+                .assertCount2Windows()
+                .switchTwoWindows()
+                .assertToWindowsH1Text("Thread QA Sample");
+    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterBrowserWindowsNewWindowTest() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterBrowserWindows()
+                .newWindowClick()
+                .assertCount2Windows()
+                .switchTwoWindows()
+                .assertToWindowsH1Text("Thread QA Sample");
+    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterBrowserWindowsNewWindowMessageTest() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterBrowserWindows()
+                .newWindowMessageClick()
                 .assertCount2Windows();
     }
 
-//    @Test
-//    @Tag("ALERTSFRAMEWINDOWS")
-//    public void enterBrowserWindowsToSwitchTextTest() {
-//        mainThreadQa.enterListAlertsFrameWindows()
-//                .enterBrowsers()
-//                .newTabWindowsBrowserWindows()
-//                .switchTwoWindows()
-//                .assertionsToWindowsText("Thread QA Sample");
-//    }
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterSimpleAlertsClickTest() {
+        String text = "You clicked a button";
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtnSee()
+                .assertAlertText(text)
+                .acceptAlert();
+    }
 
-//    @Test
-//    public void a() throws FileNotDownloadedError {
-//      String url = mainThreadQa.enterElementsClick()
-//               .brokenLinksImagesClick()
-//               .getInvalidUrl();
-////      Selenide.open(url);
-////      $x("//pre").should(Condition.text("Cannot GET /images/ThreadQa.jpg"));
-//        Assertions.assertThrows(FileNotDownloadedError.class,  () -> Selenide.download(url)) ;
-//    }
-//
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enter5SecondsAlertsClickTest() {
+        String text = "This alert appeared after 5 seconds";
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtn5Seconds()
+                .assertAlertText(text);
+//                .acceptAlert();
+    }
 }

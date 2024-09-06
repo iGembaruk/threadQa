@@ -19,7 +19,6 @@ public class PracticeForm {
     SelenideElement inputLastName = $x("//input[@placeholder='Last Name']");
     SelenideElement inputEmail = $x("//input[@placeholder='name@example.com']");
 
-   // SelenideElement maleRadioBtn = $x("//input[@value='Male']");TODO 12 пункт
     SelenideElement maleRadioBtn = $x("//div[@class='custom-control custom-radio custom-control-inline'][1]");
     SelenideElement maleRadioBtnSelected = $x("//input[@value='Male']");
     SelenideElement femaleRadioBtn = $x("//div[@class='custom-control custom-radio custom-control-inline'][2]");

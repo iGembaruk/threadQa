@@ -1,7 +1,7 @@
 package tests.ui;
 
 import com.codeborne.selenide.*;
-import tests.ui.alertsframewindows.AlertsFrameWindows;
+import tests.ui.alertsframewindows.AlertsFrameWindowsElements;
 import tests.ui.elements.ElementsMain;
 import tests.ui.forms.PracticeForm;
 
@@ -38,9 +38,10 @@ public class MainThreadQa {
         return Selenide.page(PracticeForm.class);
     }
 
-    public AlertsFrameWindows enterListAlertsFrameWindows(){
+    public AlertsFrameWindowsElements enterAlertsFrameWindows(){
         alertsFrameWindowsBtn.should(Condition.visible).click();
-        return Selenide.page(AlertsFrameWindows.class);
+        return Selenide.page(AlertsFrameWindowsElements.class);
     }
+
 
 }
