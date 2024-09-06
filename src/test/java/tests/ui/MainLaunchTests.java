@@ -15,7 +15,6 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 public class MainLaunchTests {
 
 
-    List<SelenideElement> elements = new ArrayList<>();
     private MainThreadQa mainThreadQa = new MainThreadQa();
 
     @BeforeEach
@@ -28,7 +27,7 @@ public class MainLaunchTests {
         Configuration.baseUrl = "http://85.192.34.140:8081";
         Configuration.browserSize = "1920x1080";
         Configuration.headless = false;
-        Configuration.timeout = 2000;
+        Configuration.timeout = 10000;
     }
 
     @AfterEach
@@ -387,7 +386,7 @@ public class MainLaunchTests {
         mainThreadQa.enterAlertsFrameWindows()
                 .enterAlerts()
                 .clickBtn5Seconds()
-                .assertAlertText(text);
-//                .acceptAlert();
+                .assertAlertText(text)
+                .acceptAlert();
     }
 }

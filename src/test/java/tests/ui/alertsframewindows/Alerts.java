@@ -25,7 +25,7 @@ public class Alerts {
     }
 
     public Alerts assertAlertText(String text){
-        switchTo().alert().getText().contentEquals(text);
+        switchTo().alert(Duration.ofSeconds(10)).getText().contentEquals(text);
         return this;
     }
 
@@ -35,11 +35,6 @@ public class Alerts {
     }
     public Alerts clickBtn5Seconds(){
         clickBtn5Seconds.should(Condition.enabled).click();
-        return this;
-    }
-    public Alerts assertAlertTextWait(String text){
-//        switchTo().alert(Duration.ofSeconds(7)).getText().contentEquals(text);
-        switchTo().wait();
         return this;
     }
 }

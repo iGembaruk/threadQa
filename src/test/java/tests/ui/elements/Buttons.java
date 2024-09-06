@@ -26,7 +26,7 @@ public class Buttons {
     }
 
     public Buttons assertClick(String str){
-       assertElement.should(Condition.partialText(str));
+       assertElement.should(Condition.visible).should(Condition.partialText(str));
        return this;
     }
 
