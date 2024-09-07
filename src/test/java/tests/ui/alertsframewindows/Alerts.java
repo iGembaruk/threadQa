@@ -17,6 +17,8 @@ import static com.codeborne.selenide.Selenide.switchTo;
 public class Alerts {
     SelenideElement clickBtnSee = $x("//button[@id='alertButton']");
     SelenideElement clickBtn5Seconds = $x("//button[@id='timerAlertButton']");
+    SelenideElement clickBtnConfirmAppear = $x("//button[@id='confirmButton']");
+    SelenideElement clickBtnpromptStringReturn = $x("//button[@id='promtButton']");
 
 
     public Alerts clickBtnSee(){
@@ -35,6 +37,26 @@ public class Alerts {
     }
     public Alerts clickBtn5Seconds(){
         clickBtn5Seconds.should(Condition.enabled).click();
+        return this;
+    }
+
+    public Alerts clickBtnConfirmAppear(){
+        clickBtnConfirmAppear.should(Condition.enabled).click();
+        return this;
+    }
+
+    public Alerts dismissAlert(){
+        switchTo().alert(Duration.ofSeconds(10)).dismiss();
+        return this;
+    }
+
+    public Alerts sendKeysAlert(String str){
+        switchTo().alert(Duration.ofSeconds(10)).sendKeys(str);
+        return this;
+    }
+
+    public Alerts clickBtnAlertPrompt(){
+        clickBtnpromptStringReturn.should(Condition.enabled).click();
         return this;
     }
 }

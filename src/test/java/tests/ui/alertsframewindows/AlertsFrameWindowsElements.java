@@ -10,6 +10,7 @@ public class AlertsFrameWindowsElements {
 
     SelenideElement browserWindowsBtn = $x("//li[@class='btn btn-light ']//span[@class='text'][text()='Browser Windows']");
     SelenideElement alertsBtn = $x("//span[@class='text'][text()='Alerts']");
+    SelenideElement framesBtn = $x("//span[@class='text'][text()='Frames']");
 
     public AlertsFrameWindowsElements assertionsListQuantityt5(){
         listDropDownCount5.should(CollectionCondition.size(5));
@@ -23,5 +24,10 @@ public class AlertsFrameWindowsElements {
     public Alerts enterAlerts(){
         alertsBtn.should(Condition.enabled).click();
         return page(Alerts.class);
+    }
+
+    public Frames enterFrames(){
+        framesBtn.should(Condition.enabled).click();
+        return page(Frames.class);
     }
 }

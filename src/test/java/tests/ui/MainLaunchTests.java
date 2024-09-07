@@ -389,4 +389,49 @@ public class MainLaunchTests {
                 .assertAlertText(text)
                 .acceptAlert();
     }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterAlertsClickConfirmAppearAcceptTest() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtnConfirmAppear()
+                .acceptAlert();
+    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterAlertsClickConfirmAppearDismissTest() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtnConfirmAppear()
+                .dismissAlert();
+    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterAlertsSendKeysAccept() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtnAlertPrompt()
+                .sendKeysAlert("Igor")
+                .acceptAlert();
+    }
+
+    @Test
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterAlertsSendKeysDismiss() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterAlerts()
+                .clickBtnAlertPrompt()
+                .sendKeysAlert("Igor")
+                .dismissAlert();
+    }
+
+    @Disabled("Пока закончил писать на фреймах")
+    @Tag("ALERTSFRAMEWINDOWS")
+    public void enterFrames() {
+        mainThreadQa.enterAlertsFrameWindows()
+                .enterFrames();
+    }
 }
